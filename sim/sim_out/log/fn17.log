@@ -1,0 +1,57 @@
+
+Starting "./run_sim.sh fn17"
+
+TESTNAME=fn17
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn17.lst PM.dat
+cp ./sim_in/DM_exp/fn17.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# NG: @0000 act=00 exp=fe
+# NG: @0001 act=00 exp=fd
+# NG: @0002 act=00 exp=fb
+# NG: @0003 act=00 exp=f7
+# NG: @0004 act=00 exp=ef
+# NG: @0005 act=00 exp=df
+# NG: @0006 act=00 exp=bf
+# NG: @0007 act=00 exp=7f
+# [FAILED] RAM contents not matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 1520 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn17.dat
+
+Ended "./run_sim.sh fn17"
+
+Start time: Sat Oct 20 06:49:33 JST 2018
+End   time: Sat Oct 20 06:49:35 JST 2018

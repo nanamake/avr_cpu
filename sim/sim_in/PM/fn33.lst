@@ -1,0 +1,90 @@
+//
+//AVRASM ver. 2.2.0  fn33.asm Sat Oct 20 05:53:27 2018
+//
+                // 
+                // 
+                // ; test for bld/bst
+                // ;-------------------
+                //     .equ sreg = 0x3f
+                // ;-------------------
+@000000 e000    //     ldi  r16,0x00
+@000001 e080    //     ldi  r24,0x00
+@000002 2e70    //     mov  r7 ,r16
+@000003 2e88    //     mov  r8 ,r24
+                // 
+@000004 ef1f    //     ldi  r17,0xff
+@000005 ef9f    //     ldi  r25,0xff
+@000006 2e61    //     mov  r6 ,r17
+@000007 2e99    //     mov  r9 ,r25
+                // 
+@000008 9468    //     set
+                // 
+@000009 f870    //     bld  r7 ,0
+@00000a f881    //     bld  r8 ,1
+@00000b f902    //     bld  r16,2
+@00000c f983    //     bld  r24,3
+                // 
+@00000d 94e8    //     clt
+                // 
+@00000e f867    //     bld  r6 ,7
+@00000f f896    //     bld  r9 ,6
+@000010 f915    //     bld  r17,5
+@000011 f994    //     bld  r25,4
+                // ;-------------------
+@000012 b60f    //     in   r0 ,sreg
+                // 
+@000013 fa70    //     bst  r7 ,0
+@000014 b65f    //     in   r5 ,sreg
+@000015 fa67    //     bst  r6 ,7
+@000016 b64f    //     in   r4 ,sreg
+                // 
+@000017 fa81    //     bst  r8 ,1
+@000018 b6af    //     in   r10,sreg
+@000019 fa96    //     bst  r9 ,6
+@00001a b6bf    //     in   r11,sreg
+                // 
+@00001b fb02    //     bst  r16,2
+@00001c b72f    //     in   r18,sreg
+@00001d fb15    //     bst  r17,5
+@00001e b73f    //     in   r19,sreg
+                // 
+@00001f fb83    //     bst  r24,3
+@000020 b7af    //     in   r26,sreg
+@000021 fb94    //     bst  r25,4
+@000022 b7bf    //     in   r27,sreg
+                // ;-------------------
+                //     .def zl = r30
+                //     .def zh = r31
+                // 
+@000023 e0f1    //     ldi  zh,0x01
+@000024 e0e0    //     ldi  zl,0x00
+                // 
+@000025 9271    //     st   z+,r7      ; (bld) b0 <- 1
+@000026 9281    //     st   z+,r8      ; (bld) b1 <- 1
+@000027 9301    //     st   z+,r16     ; (bld) b2 <- 1
+@000028 9381    //     st   z+,r24     ; (bld) b3 <- 1
+                // 
+@000029 9261    //     st   z+,r6      ; (bld) b7 <- 0
+@00002a 9291    //     st   z+,r9      ; (bld) b6 <- 0
+@00002b 9311    //     st   z+,r17     ; (bld) b5 <- 0
+@00002c 9391    //     st   z+,r25     ; (bld) b4 <- 0
+                // 
+@00002d 9201    //     st   z+,r0      ; (in) sreg (reset=0x00)
+                // 
+@00002e 9251    //     st   z+,r5      ; (bst) tf <- b0
+@00002f 9241    //     st   z+,r4      ; (bst) tf <- b7
+@000030 92a1    //     st   z+,r10     ; (bst) tf <- b1
+@000031 92b1    //     st   z+,r11     ; (bst) tf <- b6
+@000032 9321    //     st   z+,r18     ; (bst) tf <- b2
+@000033 9331    //     st   z+,r19     ; (bst) tf <- b5
+@000034 93a1    //     st   z+,r26     ; (bst) tf <- b3
+@000035 93b1    //     st   z+,r27     ; (bst) tf <- b4
+                // 
+                // ;-------------------
+@000036 ef0f    //     ldi  r16,0xff
+@000037 9300
+@000038 ffff    //     sts  0xffff,r16
+                // halt:
+@000039 cfff    //     rjmp halt
+//
+//Assembly complete, 0 errors, 0 warnings

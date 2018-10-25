@@ -1,0 +1,54 @@
+//
+//AVRASM ver. 2.2.0  fn40.asm Sat Oct 20 05:53:27 2018
+//
+                // 
+                // 
+                // ; test for jmp/rjmp/ijmp
+                // ;-----------------------
+@000000 e000    //     ldi  r16,0x00
+@000001 940c
+@000002 0220    //     jmp  label2
+                // ;-------------------
+                // finish:
+@000003 9503    //     inc  r16
+@000004 2e30    //     mov  r3 ,r16
+                // 
+@000005 9200
+@000006 0100    //     sts  0x0100,r0  ; (inc) 0x00
+@000007 9210
+@000008 0101    //     sts  0x0101,r1  ; (inc)
+@000009 9220
+@00000a 0102    //     sts  0x0102,r2  ; (inc)
+@00000b 9230
+@00000c 0103    //     sts  0x0103,r3  ; (inc)
+                // 
+@00000d ef0f    //     ldi  r16,0xff
+@00000e 9300
+@00000f ffff    //     sts  0xffff,r16
+                // halt:
+@000010 cfff    //     rjmp halt
+                // ;-------------------
+                //     .org 0x0110
+                // label1:
+@000110 9503    //     inc  r16
+@000111 2e10    //     mov  r1 ,r16
+@000112 c21d    //     rjmp label3
+                // ;-------------------
+                //     .org 0x0220
+                // label2:
+@000220 9503    //     inc  r16
+@000221 2e00    //     mov  r0 ,r16
+@000222 ceed    //     rjmp label1
+                // ;-------------------
+                //     .org 0x0330
+                // label3:
+@000330 9503    //     inc  r16
+@000331 2e20    //     mov  r2 ,r16
+                // 
+                //     .def zl = r30
+                //     .def zh = r31
+@000332 e0e3    //     ldi  zl,low(finish)
+@000333 e0f0    //     ldi  zh,high(finish)
+@000334 9409    //     ijmp
+//
+//Assembly complete, 0 errors, 0 warnings

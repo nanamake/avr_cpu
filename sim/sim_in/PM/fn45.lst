@@ -1,0 +1,104 @@
+//
+//AVRASM ver. 2.2.0  fn45.asm Sat Oct 20 05:53:27 2018
+//
+                // 
+                // 
+                // ; test for cpse
+                // ;-------------------
+                //     .equ sreg = 0x3f
+                // ;-------------------
+@000000 e0c0    //     ldi  r28,0x00
+@000001 e0d0    //     ldi  r29,0x00
+                // 
+@000002 011e    //     movw r2 ,r28
+@000003 012e    //     movw r4 ,r28
+@000004 015e    //     movw r10,r28
+@000005 016e    //     movw r12,r28
+@000006 019e    //     movw r18,r28
+@000007 01ae    //     movw r20,r28
+@000008 01de    //     movw r26,r28
+                // 
+@000009 ef0f    //     ldi  r16,0xff
+@00000a bf0f    //     out  sreg,r16
+                // 
+@00000b e200    //     ldi  r16,0x20
+@00000c e580    //     ldi  r24,0x50
+@00000d 2e70    //     mov  r7 ,r16
+@00000e 2e88    //     mov  r8 ,r24
+@00000f ec00    //     ldi  r16,0xc0
+@000010 ed80    //     ldi  r24,0xd0
+                // 
+@000011 2e68    //     mov  r6 ,r24
+@000012 2e90    //     mov  r9 ,r16
+@000013 2d18    //     mov  r17,r8
+@000014 2d97    //     mov  r25,r7
+                // ;-------------------
+@000015 1076    //     cpse r7 ,r6
+@000016 b65f    //     in   r5 ,sreg
+@000017 1079    //     cpse r7 ,r9
+@000018 b64f    //     in   r4 ,sreg
+@000019 1271    //     cpse r7 ,r17
+@00001a b63f    //     in   r3 ,sreg
+@00001b 1279    //     cpse r7 ,r25
+@00001c b62f    //     in   r2 ,sreg
+                // 
+@00001d 1086    //     cpse r8 ,r6
+@00001e b6af    //     in   r10,sreg
+@00001f 1089    //     cpse r8 ,r9
+@000020 b6bf    //     in   r11,sreg
+@000021 1281    //     cpse r8 ,r17
+@000022 b6cf    //     in   r12,sreg
+@000023 1289    //     cpse r8 ,r25
+@000024 b6df    //     in   r13,sreg
+                // 
+@000025 1106    //     cpse r16,r6
+@000026 b72f    //     in   r18,sreg
+@000027 1109    //     cpse r16,r9
+@000028 b73f    //     in   r19,sreg
+@000029 1301    //     cpse r16,r17
+@00002a b74f    //     in   r20,sreg
+@00002b 1309    //     cpse r16,r25
+@00002c b75f    //     in   r21,sreg
+                // 
+@00002d 1186    //     cpse r24,r6
+@00002e b7af    //     in   r26,sreg
+@00002f 1189    //     cpse r24,r9
+@000030 b7bf    //     in   r27,sreg
+@000031 1381    //     cpse r24,r17
+@000032 b7cf    //     in   r28,sreg
+@000033 1389    //     cpse r24,r25
+@000034 b7df    //     in   r29,sreg
+                // ;-------------------
+                //     .def zl = r30
+                //     .def zh = r31
+                // 
+@000035 e0f1    //     ldi  zh,0x01
+@000036 e0e0    //     ldi  zl,0x00
+                // 
+@000037 9251    //     st   z+,r5      ; (cpse) 0x20 0xd0
+@000038 9241    //     st   z+,r4      ; (cpse) 0x20 0xc0
+@000039 9231    //     st   z+,r3      ; (cpse) 0x20 0x50
+@00003a 9221    //     st   z+,r2      ; (cpse) 0x20 0x20
+                // 
+@00003b 92a1    //     st   z+,r10     ; (cpse) 0x50 0xd0
+@00003c 92b1    //     st   z+,r11     ; (cpse) 0x50 0xc0
+@00003d 92c1    //     st   z+,r12     ; (cpse) 0x50 0x50
+@00003e 92d1    //     st   z+,r13     ; (cpse) 0x50 0x20
+                // 
+@00003f 9321    //     st   z+,r18     ; (cpse) 0xc0 0xd0
+@000040 9331    //     st   z+,r19     ; (cpse) 0xc0 0xc0
+@000041 9341    //     st   z+,r20     ; (cpse) 0xc0 0x50
+@000042 9351    //     st   z+,r21     ; (cpse) 0xc0 0x20
+                // 
+@000043 93a1    //     st   z+,r26     ; (cpse) 0xd0 0xd0
+@000044 93b1    //     st   z+,r27     ; (cpse) 0xd0 0xc0
+@000045 93c1    //     st   z+,r28     ; (cpse) 0xd0 0x50
+@000046 93d1    //     st   z+,r29     ; (cpse) 0xd0 0x20
+                // ;-------------------
+@000047 ef0f    //     ldi  r16,0xff
+@000048 9300
+@000049 ffff    //     sts  0xffff,r16
+                // halt:
+@00004a cfff    //     rjmp halt
+//
+//Assembly complete, 0 errors, 0 warnings

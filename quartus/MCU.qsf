@@ -1,0 +1,28 @@
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE22F17C6
+set_global_assignment -name TOP_LEVEL_ENTITY MCU
+set_global_assignment -name VERILOG_FILE rtl_mcu/MCU.v
+set_global_assignment -name VERILOG_FILE rtl_mcu/RAM.v
+set_global_assignment -name VERILOG_FILE rtl_mcu/IoReg.v
+set_global_assignment -name VERILOG_FILE rtl_cpu/CPU.v
+set_global_assignment -name VERILOG_FILE rtl_cpu/PcAndIr.v
+set_global_assignment -name VERILOG_FILE rtl_cpu/OpDecode.v
+set_global_assignment -name VERILOG_FILE rtl_cpu/TimDecode.v
+set_global_assignment -name VERILOG_FILE rtl_cpu/AluInput.v
+set_global_assignment -name VERILOG_FILE rtl_cpu/ALU.v
+set_global_assignment -name VERILOG_FILE rtl_cpu/Multiply.v
+set_global_assignment -name VERILOG_FILE rtl_cpu/BitSetClr.v
+set_global_assignment -name VERILOG_FILE rtl_cpu/PmCont.v
+set_global_assignment -name VERILOG_FILE rtl_cpu/DmCont.v
+set_global_assignment -name VERILOG_FILE rtl_cpu/DmAdConv.v
+set_global_assignment -name VERILOG_FILE rtl_cpu/DmEnMask.v
+set_global_assignment -name VERILOG_FILE rtl_cpu/RfRead.v
+set_global_assignment -name VERILOG_FILE rtl_cpu/RfWrite.v
+set_global_assignment -name VERILOG_FILE rtl_cpu/RegFile.v
+set_global_assignment -name VERILOG_FILE rtl_cpu/SregAndSp.v
+
+set_global_assignment -name LAST_QUARTUS_VERSION 14.0
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -1,0 +1,78 @@
+//
+//AVRASM ver. 2.2.0  fn31.asm Sat Oct 20 05:53:26 2018
+//
+                // 
+                // 
+                // ; test for bset/bclr
+                // ;-------------------
+                //     .equ sreg = 0x3f
+                // ;-------------------
+@000000 b67f    //     in   r7 ,sreg
+                // ;-------------------
+@000001 9408    //     sec
+@000002 b68f    //     in   r8 ,sreg
+@000003 9418    //     sez
+@000004 b69f    //     in   r9 ,sreg
+@000005 9428    //     sen
+@000006 b6af    //     in   r10,sreg
+@000007 9438    //     sev
+@000008 b6bf    //     in   r11,sreg
+@000009 9448    //     ses
+@00000a b6cf    //     in   r12,sreg
+@00000b 9458    //     seh
+@00000c b6df    //     in   r13,sreg
+@00000d 9468    //     set
+@00000e b6ef    //     in   r14,sreg
+@00000f 9478    //     sei
+@000010 b6ff    //     in   r15,sreg
+                // ;-------------------
+@000011 9488    //     clc
+@000012 b70f    //     in   r16,sreg
+@000013 9498    //     clz
+@000014 b71f    //     in   r17,sreg
+@000015 94a8    //     cln
+@000016 b72f    //     in   r18,sreg
+@000017 94b8    //     clv
+@000018 b73f    //     in   r19,sreg
+@000019 94c8    //     cls
+@00001a b74f    //     in   r20,sreg
+@00001b 94d8    //     clh
+@00001c b75f    //     in   r21,sreg
+@00001d 94e8    //     clt
+@00001e b76f    //     in   r22,sreg
+@00001f 94f8    //     cli
+@000020 b77f    //     in   r23,sreg
+                // ;-------------------
+                //     .def zl = r30
+                //     .def zh = r31
+                // 
+@000021 e0f1    //     ldi  zh,0x01
+@000022 e0ef    //     ldi  zl,0x0f
+                // 
+@000023 9271    //     st   z+,r7      ; (in) sreg
+                // 
+@000024 9281    //     st   z+,r8      ; (sec)
+@000025 9291    //     st   z+,r9      ; (sez)
+@000026 92a1    //     st   z+,r10     ; (sen)
+@000027 92b1    //     st   z+,r11     ; (sev)
+@000028 92c1    //     st   z+,r12     ; (ses)
+@000029 92d1    //     st   z+,r13     ; (seh)
+@00002a 92e1    //     st   z+,r14     ; (set)
+@00002b 92f1    //     st   z+,r15     ; (sei)
+                // 
+@00002c 9301    //     st   z+,r16     ; (clc)
+@00002d 9311    //     st   z+,r17     ; (clz)
+@00002e 9321    //     st   z+,r18     ; (cln)
+@00002f 9331    //     st   z+,r19     ; (clv)
+@000030 9341    //     st   z+,r20     ; (cls)
+@000031 9351    //     st   z+,r21     ; (clh)
+@000032 9361    //     st   z+,r22     ; (clt)
+@000033 9371    //     st   z+,r23     ; (cli)
+                // ;-------------------
+@000034 ef0f    //     ldi  r16,0xff
+@000035 9300
+@000036 ffff    //     sts  0xffff,r16
+                // halt:
+@000037 cfff    //     rjmp halt
+//
+//Assembly complete, 0 errors, 0 warnings

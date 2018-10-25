@@ -1,0 +1,138 @@
+//
+//AVRASM ver. 2.2.0  fn46.asm Sat Oct 20 05:53:27 2018
+//
+                // 
+                // 
+                // ; test for skip enable
+                // ;-----------------------
+                //     ; In this test IRQ input is required. See testbench stimuli.
+@000000 940c
+@000001 0004    //     jmp  reset
+@000002 940c
+@000003 0110    //     jmp  hand1
+                // ;-------------------
+                // reset:
+                //     .equ spl  = 0x3d    ; stack pointer low byte
+                //     .equ sreg = 0x3f    ; status register
+                // 
+                //     ; Test for net skp_det/irq_det
+@000004 9478    //     sei
+@000005 b68d    //     in   r8 ,spl
+@000006 9280
+@000007 0100    //     sts  0x0100,r8
+                // 
+                //     ; Test for net skp_2nd_det/pc_new
+@000008 e000    //     ldi  r16,0x00
+@000009 1300    //     cpse r16,r16
+@00000a 940c
+@00000b 0055    //     jmp  halt
+                // 
+                //     ; Interrupt here
+@00000c 9280
+@00000d 0101    //     sts  0x0101,r8
+                // 
+                //     ; Test for net skp_2nd_det/tim_sr_en
+@00000e b68d    //     in   r8 ,spl
+@00000f 1300    //     cpse r16,r16
+@000010 940e
+@000011 0055    //     call halt
+@000012 b69d    //     in   r9 ,spl
+                // 
+@000013 9280
+@000014 0102    //     sts  0x0102,r8
+@000015 9290
+@000016 0103    //     sts  0x0103,r9
+                // ;-------------------
+                //     ; Test for net skp_det
+@000017 ef0f    //     ldi  r16,0xff
+@000018 1300    //     cpse r16,r16
+@000019 1300    //     cpse r16,r16
+@00001a e000    //     ldi  r16,0x00
+@00001b 9300
+@00001c 0104    //     sts  0x0104,r16
+                // 
+                //     ; Test for net skp_2nd_det/tim_dm_re
+@00001d ef0f    //     ldi  r16,0xff
+@00001e 9300
+@00001f 0105    //     sts  0x0105,r16
+@000020 e010    //     ldi  r17,0x00
+@000021 1311    //     cpse r17,r17
+@000022 9110
+@000023 0105    //     lds  r17,0x0105
+@000024 9310
+@000025 0106    //     sts  0x0106,r17
+                // 
+                //     ; Test for net skp_2nd_det/tim_dm_we
+@000026 1311    //     cpse r17,r17
+@000027 9310
+@000028 0107    //     sts  0x0107,r17
+                // ;-------------------
+                //     ; Test for net tim_rf_we/tim_sr_en
+@000029 b68f    //     in   r8 ,sreg
+@00002a e000    //     ldi  r16,0x00
+@00002b 1300    //     cpse r16,r16
+@00002c 9500    //     com  r16
+@00002d b69f    //     in   r9 ,sreg
+                // 
+@00002e 9280
+@00002f 0108    //     sts  0x0108,r8
+@000030 9290
+@000031 0109    //     sts  0x0109,r9
+@000032 9300
+@000033 010a    //     sts  0x010a,r16
+                // ;-------------------
+                //     ; Test for net pm_wd_new
+                //     .def zl = r30
+                //     .def zh = r31
+                // 
+@000034 e5e5    //     ldi  zl ,low (halt)
+@000035 e0f0    //     ldi  zh ,high(halt)
+@000036 9631    //     adiw zl ,1
+                // 
+@000037 e140    //     ldi  r20,0x10
+@000038 e250    //     ldi  r21,0x20
+@000039 e360    //     ldi  r22,0x30
+@00003a e470    //     ldi  r23,0x40
+                // 
+@00003b 010a    //     movw r0 ,r20
+@00003c 95e8    //     spm
+@00003d 010b    //     movw r0 ,r22
+@00003e 1300    //     cpse r16,r16
+@00003f 95e8    //     spm
+                // 
+                //     ; Test for net lpm_re_l/lpm_re_h
+@000040 0fee    //     lsl  zl
+@000041 1fff    //     rol  zh
+                // 
+@000042 1300    //     cpse r16,r16
+@000043 9004    //     lpm  r0 ,z
+@000044 9631    //     adiw zl ,1
+@000045 1300    //     cpse r16,r16
+@000046 9014    //     lpm  r1 ,z
+                // 
+@000047 9200
+@000048 010c    //     sts  0x010c,r0
+@000049 9210
+@00004a 010d    //     sts  0x010d,r1
+                // 
+@00004b 9014    //     lpm  r1 ,z
+@00004c 9731    //     sbiw zl ,1
+@00004d 9004    //     lpm  r0 ,z
+                // 
+@00004e 9200
+@00004f 010e    //     sts  0x010e,r0
+@000050 9210
+@000051 010f    //     sts  0x010f,r1
+                // ;-------------------
+@000052 ef0f    //     ldi  r16,0xff
+@000053 9300
+@000054 ffff    //     sts  0xffff,r16
+                // halt:
+@000055 cfff    //     rjmp halt
+                // ;-------------------
+                //     .org 0x0110
+                // hand1:
+@000110 b68d    //     in   r8 ,spl
+@000111 9518    //     reti
+//
+//Assembly complete, 0 errors, 0 warnings

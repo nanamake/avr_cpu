@@ -1,0 +1,132 @@
+//
+//AVRASM ver. 2.2.0  fn67.asm Sat Oct 20 05:53:28 2018
+//
+                // 
+                // 
+                // ; test for asr/sreg
+                // ;-------------------
+                //     .equ sreg = 0x3f
+                // ;-------------------
+@000000 e080    //     ldi  r24,0x00
+@000001 e091    //     ldi  r25,0x01
+@000002 e8a0    //     ldi  r26,0x80
+@000003 e8b1    //     ldi  r27,0x81
+                // 
+@000004 010c    //     movw r0 ,r24
+@000005 011d    //     movw r2 ,r26
+@000006 014c    //     movw r8 ,r24
+@000007 015d    //     movw r10,r26
+@000008 018c    //     movw r16,r24
+@000009 019d    //     movw r18,r26
+                // ;-------------------
+@00000a bf8f    //     out  sreg,r24
+@00000b 9405    //     asr  r0
+@00000c b64f    //     in   r4 ,sreg
+@00000d 9415    //     asr  r1
+@00000e b65f    //     in   r5 ,sreg
+@00000f 9425    //     asr  r2
+@000010 b66f    //     in   r6 ,sreg
+@000011 9435    //     asr  r3
+@000012 b67f    //     in   r7 ,sreg
+                // ;-------------------
+@000013 bf8f    //     out  sreg,r24
+@000014 9486    //     lsr  r8
+@000015 b6cf    //     in   r12,sreg
+@000016 9496    //     lsr  r9
+@000017 b6df    //     in   r13,sreg
+@000018 94a6    //     lsr  r10
+@000019 b6ef    //     in   r14,sreg
+@00001a 94b6    //     lsr  r11
+@00001b b6ff    //     in   r15,sreg
+                // ;-------------------
+@00001c bf8f    //     out  sreg,r24
+@00001d 9507    //     ror  r16
+@00001e b74f    //     in   r20,sreg
+@00001f 9517    //     ror  r17
+@000020 b75f    //     in   r21,sreg
+@000021 9527    //     ror  r18
+@000022 b76f    //     in   r22,sreg
+@000023 9537    //     ror  r19
+@000024 b77f    //     in   r23,sreg
+                // ;-------------------
+                //     .def zl = r30
+                //     .def zh = r31
+                // 
+@000025 e0f1    //     ldi  zh,0x01
+@000026 e0e0    //     ldi  zl,0x00
+                // 
+@000027 9381    //     st   z+,r24     ; (ldi) 0x00
+@000028 9201    //     st   z+,r0      ; (asr) 0x00 (cf=0)
+@000029 9281    //     st   z+,r8      ; (lsr) 0x00 (cf=0)
+@00002a 9301    //     st   z+,r16     ; (ror) 0x00 (cf=0)
+                // 
+@00002b 9391    //     st   z+,r25     ; (ldi) 0x01
+@00002c 9211    //     st   z+,r1      ; (asr) 0x01 (cf=0)
+@00002d 9291    //     st   z+,r9      ; (lsr) 0x01 (cf=0)
+@00002e 9311    //     st   z+,r17     ; (ror) 0x01 (cf=0)
+                // 
+@00002f 93a1    //     st   z+,r26     ; (ldi) 0x80
+@000030 9221    //     st   z+,r2      ; (asr) 0x80 (cf=1)
+@000031 92a1    //     st   z+,r10     ; (lsr) 0x80 (cf=1)
+@000032 9321    //     st   z+,r18     ; (ror) 0x80 (cf=1)
+                // 
+@000033 93b1    //     st   z+,r27     ; (ldi) 0x81
+@000034 9231    //     st   z+,r3      ; (asr) 0x81 (cf=0)
+@000035 92b1    //     st   z+,r11     ; (lsr) 0x81 (cf=0)
+@000036 9331    //     st   z+,r19     ; (ror) 0x81 (cf=0)
+                // ;-------------------
+@000037 9381    //     st   z+,r24     ; (ldi) 0x00
+@000038 9241    //     st   z+,r4      ; (asr) 0x00 (cf=0) ---z-
+@000039 92c1    //     st   z+,r12     ; (lsr) 0x00 (cf=0) ---z-
+@00003a 9341    //     st   z+,r20     ; (ror) 0x00 (cf=0) ---z-
+                // 
+@00003b 9391    //     st   z+,r25     ; (ldi) 0x01
+@00003c 9251    //     st   z+,r5      ; (asr) 0x01 (cf=0) sv-zc
+@00003d 92d1    //     st   z+,r13     ; (lsr) 0x01 (cf=0) sv-zc
+@00003e 9351    //     st   z+,r21     ; (ror) 0x01 (cf=0) sv-zc
+                // 
+@00003f 93a1    //     st   z+,r26     ; (ldi) 0x80
+@000040 9261    //     st   z+,r6      ; (asr) 0x80 (cf=1) -vn--
+@000041 92e1    //     st   z+,r14     ; (lsr) 0x80 (cf=1) -----
+@000042 9361    //     st   z+,r22     ; (ror) 0x80 (cf=1) -vn--
+                // 
+@000043 93b1    //     st   z+,r27     ; (ldi) 0x81
+@000044 9271    //     st   z+,r7      ; (asr) 0x81 (cf=0) s-n-c
+@000045 92f1    //     st   z+,r15     ; (lsr) 0x81 (cf=0) sv--c
+@000046 9371    //     st   z+,r23     ; (ror) 0x81 (cf=0) sv--c
+                // ;-------------------
+@000047 2e08    //     mov  r0 ,r24
+@000048 2e88    //     mov  r8 ,r24
+@000049 2f08    //     mov  r16,r24
+@00004a efcf    //     ldi  r28,0xff
+                // 
+@00004b bfcf    //     out  sreg,r28
+@00004c 9405    //     asr  r0
+@00004d b64f    //     in   r4 ,sreg
+@00004e bfcf    //     out  sreg,r28
+@00004f 9486    //     lsr  r8
+@000050 b6cf    //     in   r12,sreg
+@000051 bfcf    //     out  sreg,r28
+@000052 9507    //     ror  r16
+@000053 b74f    //     in   r20,sreg
+                // 
+@000054 9381    //     st   z+,r24     ; (ldi) 0x00
+@000055 9201    //     st   z+,r0      ; (asr) 0x00 (cf=1)
+@000056 9281    //     st   z+,r8      ; (lsr) 0x00 (cf=1)
+@000057 9301    //     st   z+,r16     ; (ror) 0x00 (cf=1)
+                // 
+@000058 e0f1    //     ldi  zh,0x01
+@000059 e3e0    //     ldi  zl,0x30
+                // 
+@00005a 9381    //     st   z+,r24     ; (ldi) 0x00
+@00005b 9241    //     st   z+,r4      ; (asr) 0x00 (cf=1) ith---z-
+@00005c 92c1    //     st   z+,r12     ; (lsr) 0x00 (cf=1) ith---z-
+@00005d 9341    //     st   z+,r20     ; (ror) 0x00 (cf=1) ith-vn--
+                // ;-------------------
+@00005e ef0f    //     ldi  r16,0xff
+@00005f 9300
+@000060 ffff    //     sts  0xffff,r16
+                // halt:
+@000061 cfff    //     rjmp halt
+//
+//Assembly complete, 0 errors, 0 warnings

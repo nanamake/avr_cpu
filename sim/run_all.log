@@ -1,0 +1,2151 @@
+
+Starting "./run_all.sh"
+
+Deleting previous output directories...
+rm -rf ./sim_out/DM
+rm -rf ./sim_out/log
+
+Starting "./run_sim.sh fn10"
+
+TESTNAME=fn10
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn10.lst PM.dat
+cp ./sim_in/DM_exp/fn10.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 2700 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+mkdir ./sim_out/DM
+cp DM.dat ./sim_out/DM/fn10.dat
+
+Ended "./run_sim.sh fn10"
+
+Start time: Sat Oct 20 06:49:19 JST 2018
+End   time: Sat Oct 20 06:49:21 JST 2018
+
+Saving copy of running log...
+mkdir ./sim_out/log
+cp run_sim.log ./sim_out/log/fn10.log
+
+Starting "./run_sim.sh fn11"
+
+TESTNAME=fn11
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn11.lst PM.dat
+cp ./sim_in/DM_exp/fn11.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 3960 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn11.dat
+
+Ended "./run_sim.sh fn11"
+
+Start time: Sat Oct 20 06:49:21 JST 2018
+End   time: Sat Oct 20 06:49:23 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn11.log
+
+Starting "./run_sim.sh fn12"
+
+TESTNAME=fn12
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn12.lst PM.dat
+cp ./sim_in/DM_exp/fn12.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 1900 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn12.dat
+
+Ended "./run_sim.sh fn12"
+
+Start time: Sat Oct 20 06:49:23 JST 2018
+End   time: Sat Oct 20 06:49:25 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn12.log
+
+Starting "./run_sim.sh fn13"
+
+TESTNAME=fn13
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn13.lst PM.dat
+cp ./sim_in/DM_exp/fn13.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 3040 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn13.dat
+
+Ended "./run_sim.sh fn13"
+
+Start time: Sat Oct 20 06:49:25 JST 2018
+End   time: Sat Oct 20 06:49:27 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn13.log
+
+Starting "./run_sim.sh fn14"
+
+TESTNAME=fn14
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn14.lst PM.dat
+cp ./sim_in/DM_exp/fn14.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 1860 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn14.dat
+
+Ended "./run_sim.sh fn14"
+
+Start time: Sat Oct 20 06:49:27 JST 2018
+End   time: Sat Oct 20 06:49:29 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn14.log
+
+Starting "./run_sim.sh fn15"
+
+TESTNAME=fn15
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn15.lst PM.dat
+cp ./sim_in/DM_exp/fn15.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 2620 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn15.dat
+
+Ended "./run_sim.sh fn15"
+
+Start time: Sat Oct 20 06:49:29 JST 2018
+End   time: Sat Oct 20 06:49:31 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn15.log
+
+Starting "./run_sim.sh fn16"
+
+TESTNAME=fn16
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn16.lst PM.dat
+cp ./sim_in/DM_exp/fn16.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 2160 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn16.dat
+
+Ended "./run_sim.sh fn16"
+
+Start time: Sat Oct 20 06:49:31 JST 2018
+End   time: Sat Oct 20 06:49:33 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn16.log
+
+Starting "./run_sim.sh fn17"
+
+TESTNAME=fn17
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn17.lst PM.dat
+cp ./sim_in/DM_exp/fn17.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# NG: @0000 act=00 exp=fe
+# NG: @0001 act=00 exp=fd
+# NG: @0002 act=00 exp=fb
+# NG: @0003 act=00 exp=f7
+# NG: @0004 act=00 exp=ef
+# NG: @0005 act=00 exp=df
+# NG: @0006 act=00 exp=bf
+# NG: @0007 act=00 exp=7f
+# [FAILED] RAM contents not matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 1520 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn17.dat
+
+Ended "./run_sim.sh fn17"
+
+Start time: Sat Oct 20 06:49:33 JST 2018
+End   time: Sat Oct 20 06:49:35 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn17.log
+
+Starting "./run_sim.sh fn20"
+
+TESTNAME=fn20
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn20.lst PM.dat
+cp ./sim_in/DM_exp/fn20.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 2780 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn20.dat
+
+Ended "./run_sim.sh fn20"
+
+Start time: Sat Oct 20 06:49:35 JST 2018
+End   time: Sat Oct 20 06:49:37 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn20.log
+
+Starting "./run_sim.sh fn21"
+
+TESTNAME=fn21
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn21.lst PM.dat
+cp ./sim_in/DM_exp/fn21.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 1460 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn21.dat
+
+Ended "./run_sim.sh fn21"
+
+Start time: Sat Oct 20 06:49:37 JST 2018
+End   time: Sat Oct 20 06:49:39 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn21.log
+
+Starting "./run_sim.sh fn22"
+
+TESTNAME=fn22
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn22.lst PM.dat
+cp ./sim_in/DM_exp/fn22.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 1380 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn22.dat
+
+Ended "./run_sim.sh fn22"
+
+Start time: Sat Oct 20 06:49:39 JST 2018
+End   time: Sat Oct 20 06:49:41 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn22.log
+
+Starting "./run_sim.sh fn23"
+
+TESTNAME=fn23
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn23.lst PM.dat
+cp ./sim_in/DM_exp/fn23.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 2700 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn23.dat
+
+Ended "./run_sim.sh fn23"
+
+Start time: Sat Oct 20 06:49:41 JST 2018
+End   time: Sat Oct 20 06:49:43 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn23.log
+
+Starting "./run_sim.sh fn24"
+
+TESTNAME=fn24
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn24.lst PM.dat
+cp ./sim_in/DM_exp/fn24.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 1540 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn24.dat
+
+Ended "./run_sim.sh fn24"
+
+Start time: Sat Oct 20 06:49:43 JST 2018
+End   time: Sat Oct 20 06:49:45 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn24.log
+
+Starting "./run_sim.sh fn25"
+
+TESTNAME=fn25
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn25.lst PM.dat
+cp ./sim_in/DM_exp/fn25.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 2760 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn25.dat
+
+Ended "./run_sim.sh fn25"
+
+Start time: Sat Oct 20 06:49:45 JST 2018
+End   time: Sat Oct 20 06:49:47 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn25.log
+
+Starting "./run_sim.sh fn26"
+
+TESTNAME=fn26
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn26.lst PM.dat
+cp ./sim_in/DM_exp/fn26.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 2480 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn26.dat
+
+Ended "./run_sim.sh fn26"
+
+Start time: Sat Oct 20 06:49:48 JST 2018
+End   time: Sat Oct 20 06:49:49 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn26.log
+
+Starting "./run_sim.sh fn30"
+
+TESTNAME=fn30
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn30.lst PM.dat
+cp ./sim_in/DM_exp/fn30.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 2980 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn30.dat
+
+Ended "./run_sim.sh fn30"
+
+Start time: Sat Oct 20 06:49:50 JST 2018
+End   time: Sat Oct 20 06:49:52 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn30.log
+
+Starting "./run_sim.sh fn31"
+
+TESTNAME=fn31
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn31.lst PM.dat
+cp ./sim_in/DM_exp/fn31.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 1720 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn31.dat
+
+Ended "./run_sim.sh fn31"
+
+Start time: Sat Oct 20 06:49:52 JST 2018
+End   time: Sat Oct 20 06:49:54 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn31.log
+
+Starting "./run_sim.sh fn32"
+
+TESTNAME=fn32
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn32.lst PM.dat
+cp ./sim_in/DM_exp/fn32.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 2600 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn32.dat
+
+Ended "./run_sim.sh fn32"
+
+Start time: Sat Oct 20 06:49:54 JST 2018
+End   time: Sat Oct 20 06:49:56 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn32.log
+
+Starting "./run_sim.sh fn33"
+
+TESTNAME=fn33
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn33.lst PM.dat
+cp ./sim_in/DM_exp/fn33.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 1600 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn33.dat
+
+Ended "./run_sim.sh fn33"
+
+Start time: Sat Oct 20 06:49:56 JST 2018
+End   time: Sat Oct 20 06:49:58 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn33.log
+
+Starting "./run_sim.sh fn40"
+
+TESTNAME=fn40
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn40.lst PM.dat
+cp ./sim_in/DM_exp/fn40.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 900 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn40.dat
+
+Ended "./run_sim.sh fn40"
+
+Start time: Sat Oct 20 06:49:58 JST 2018
+End   time: Sat Oct 20 06:50:00 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn40.log
+
+Starting "./run_sim.sh fn41"
+
+TESTNAME=fn41
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn41.lst PM.dat
+cp ./sim_in/DM_exp/fn41.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 1300 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn41.dat
+
+Ended "./run_sim.sh fn41"
+
+Start time: Sat Oct 20 06:50:00 JST 2018
+End   time: Sat Oct 20 06:50:02 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn41.log
+
+Starting "./run_sim.sh fn42"
+
+TESTNAME=fn42
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn42.lst PM.dat
+cp ./sim_in/DM_exp/fn42.dat DM_exp.dat
+cp ./sim_in/stim/fn42.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 2060 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn42.dat
+
+Ended "./run_sim.sh fn42"
+
+Start time: Sat Oct 20 06:50:02 JST 2018
+End   time: Sat Oct 20 06:50:04 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn42.log
+
+Starting "./run_sim.sh fn43"
+
+TESTNAME=fn43
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn43.lst PM.dat
+cp ./sim_in/DM_exp/fn43.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 4400 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn43.dat
+
+Ended "./run_sim.sh fn43"
+
+Start time: Sat Oct 20 06:50:04 JST 2018
+End   time: Sat Oct 20 06:50:06 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn43.log
+
+Starting "./run_sim.sh fn44"
+
+TESTNAME=fn44
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn44.lst PM.dat
+cp ./sim_in/DM_exp/fn44.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 2920 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn44.dat
+
+Ended "./run_sim.sh fn44"
+
+Start time: Sat Oct 20 06:50:06 JST 2018
+End   time: Sat Oct 20 06:50:08 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn44.log
+
+Starting "./run_sim.sh fn45"
+
+TESTNAME=fn45
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn45.lst PM.dat
+cp ./sim_in/DM_exp/fn45.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 2 us  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn45.dat
+
+Ended "./run_sim.sh fn45"
+
+Start time: Sat Oct 20 06:50:08 JST 2018
+End   time: Sat Oct 20 06:50:10 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn45.log
+
+Starting "./run_sim.sh fn46"
+
+TESTNAME=fn46
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn46.lst PM.dat
+cp ./sim_in/DM_exp/fn46.dat DM_exp.dat
+cp ./sim_in/stim/fn46.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 2440 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn46.dat
+
+Ended "./run_sim.sh fn46"
+
+Start time: Sat Oct 20 06:50:10 JST 2018
+End   time: Sat Oct 20 06:50:12 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn46.log
+
+Starting "./run_sim.sh fn50"
+
+TESTNAME=fn50
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn50.lst PM.dat
+cp ./sim_in/DM_exp/fn50.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 1760 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn50.dat
+
+Ended "./run_sim.sh fn50"
+
+Start time: Sat Oct 20 06:50:13 JST 2018
+End   time: Sat Oct 20 06:50:15 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn50.log
+
+Starting "./run_sim.sh fn51"
+
+TESTNAME=fn51
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn51.lst PM.dat
+cp ./sim_in/DM_exp/fn51.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 1760 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn51.dat
+
+Ended "./run_sim.sh fn51"
+
+Start time: Sat Oct 20 06:50:15 JST 2018
+End   time: Sat Oct 20 06:50:17 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn51.log
+
+Starting "./run_sim.sh fn52"
+
+TESTNAME=fn52
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn52.lst PM.dat
+cp ./sim_in/DM_exp/fn52.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 2160 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn52.dat
+
+Ended "./run_sim.sh fn52"
+
+Start time: Sat Oct 20 06:50:17 JST 2018
+End   time: Sat Oct 20 06:50:19 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn52.log
+
+Starting "./run_sim.sh fn53"
+
+TESTNAME=fn53
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn53.lst PM.dat
+cp ./sim_in/DM_exp/fn53.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 2160 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn53.dat
+
+Ended "./run_sim.sh fn53"
+
+Start time: Sat Oct 20 06:50:19 JST 2018
+End   time: Sat Oct 20 06:50:21 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn53.log
+
+Starting "./run_sim.sh fn54"
+
+TESTNAME=fn54
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn54.lst PM.dat
+cp ./sim_in/DM_exp/fn54.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 2340 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn54.dat
+
+Ended "./run_sim.sh fn54"
+
+Start time: Sat Oct 20 06:50:21 JST 2018
+End   time: Sat Oct 20 06:50:23 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn54.log
+
+Starting "./run_sim.sh fn55"
+
+TESTNAME=fn55
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn55.lst PM.dat
+cp ./sim_in/DM_exp/fn55.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 2460 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn55.dat
+
+Ended "./run_sim.sh fn55"
+
+Start time: Sat Oct 20 06:50:23 JST 2018
+End   time: Sat Oct 20 06:50:25 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn55.log
+
+Starting "./run_sim.sh fn60"
+
+TESTNAME=fn60
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn60.lst PM.dat
+cp ./sim_in/DM_exp/fn60.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 4800 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn60.dat
+
+Ended "./run_sim.sh fn60"
+
+Start time: Sat Oct 20 06:50:25 JST 2018
+End   time: Sat Oct 20 06:50:27 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn60.log
+
+Starting "./run_sim.sh fn61"
+
+TESTNAME=fn61
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn61.lst PM.dat
+cp ./sim_in/DM_exp/fn61.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 4920 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn61.dat
+
+Ended "./run_sim.sh fn61"
+
+Start time: Sat Oct 20 06:50:27 JST 2018
+End   time: Sat Oct 20 06:50:29 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn61.log
+
+Starting "./run_sim.sh fn62"
+
+TESTNAME=fn62
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn62.lst PM.dat
+cp ./sim_in/DM_exp/fn62.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 4840 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn62.dat
+
+Ended "./run_sim.sh fn62"
+
+Start time: Sat Oct 20 06:50:29 JST 2018
+End   time: Sat Oct 20 06:50:31 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn62.log
+
+Starting "./run_sim.sh fn63"
+
+TESTNAME=fn63
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn63.lst PM.dat
+cp ./sim_in/DM_exp/fn63.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 3140 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn63.dat
+
+Ended "./run_sim.sh fn63"
+
+Start time: Sat Oct 20 06:50:32 JST 2018
+End   time: Sat Oct 20 06:50:34 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn63.log
+
+Starting "./run_sim.sh fn64"
+
+TESTNAME=fn64
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn64.lst PM.dat
+cp ./sim_in/DM_exp/fn64.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 2380 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn64.dat
+
+Ended "./run_sim.sh fn64"
+
+Start time: Sat Oct 20 06:50:34 JST 2018
+End   time: Sat Oct 20 06:50:36 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn64.log
+
+Starting "./run_sim.sh fn65"
+
+TESTNAME=fn65
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn65.lst PM.dat
+cp ./sim_in/DM_exp/fn65.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 3400 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn65.dat
+
+Ended "./run_sim.sh fn65"
+
+Start time: Sat Oct 20 06:50:36 JST 2018
+End   time: Sat Oct 20 06:50:38 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn65.log
+
+Starting "./run_sim.sh fn66"
+
+TESTNAME=fn66
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn66.lst PM.dat
+cp ./sim_in/DM_exp/fn66.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 2700 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn66.dat
+
+Ended "./run_sim.sh fn66"
+
+Start time: Sat Oct 20 06:50:38 JST 2018
+End   time: Sat Oct 20 06:50:40 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn66.log
+
+Starting "./run_sim.sh fn67"
+
+TESTNAME=fn67
+
+Deleting previous test files...
+rm -f PM.dat
+rm -f DM.dat
+rm -f DM_exp.dat
+rm -f stim.v
+rm -f vsim.log
+
+Copying input files...
+cp ./sim_in/PM/fn67.lst PM.dat
+cp ./sim_in/DM_exp/fn67.dat DM_exp.dat
+cp ./tb/stim.v stim.v
+
+Compiling HDL files...
+./vlog_tb.sh +define+VERIFY
++ '[' '!' -d work ']'
++ tb_dir=./tb
++ vlog ./tb/TB.v +incdir+./tb +define+VERIFY
+Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+-- Compiling module TB
+
+Top level modules:
+	TB
+
+Running simulation...
+./vsim.sh
++ vsim -c TB -do 'log -r /*;run -all' -l vsim.log -quiet +nowarnTSCALE
+Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+
+# 10.1e
+
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 2520 ns  Iteration: 0  Instance: /TB
+
+Saving output files...
+cp DM.dat ./sim_out/DM/fn67.dat
+
+Ended "./run_sim.sh fn67"
+
+Start time: Sat Oct 20 06:50:40 JST 2018
+End   time: Sat Oct 20 06:50:42 JST 2018
+
+Saving copy of running log...
+cp run_sim.log ./sim_out/log/fn67.log
+
+Checking running log files...
+
+grep PASSED ./sim_out/log/*
+./sim_out/log/fn10.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn11.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn12.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn13.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn14.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn15.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn16.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn20.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn21.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn22.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn23.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn24.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn25.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn26.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn30.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn31.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn32.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn33.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn40.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn41.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn42.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn43.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn44.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn45.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn46.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn50.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn51.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn52.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn53.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn54.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn55.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn60.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn61.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn62.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn63.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn64.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn65.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn66.log:# [PASSED] All RAM contents matched.
+./sim_out/log/fn67.log:# [PASSED] All RAM contents matched.
+
+39 test function passed.
+
+grep FAILED ./sim_out/log/*
+./sim_out/log/fn17.log:# [FAILED] RAM contents not matched.
+
+1 test function failed.
+
+Ended "./run_all.sh"
+
+Start time: Sat Oct 20 06:49:18 JST 2018
+End   time: Sat Oct 20 06:50:42 JST 2018

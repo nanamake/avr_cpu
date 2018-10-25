@@ -1,0 +1,153 @@
+//
+//AVRASM ver. 2.2.0  fn54.asm Sat Oct 20 05:53:27 2018
+//
+                // 
+                // 
+                // ; test for brbs
+                // ;-------------------
+                //     .def zl = r30
+                //     .def zh = r31
+                //     .equ sreg = 0x3f
+                // ;-------------------
+@000000 efcf    //     ldi  r28,0xff
+@000001 efdf    //     ldi  r29,0xff
+                // 
+@000002 011e    //     movw r2 ,r28
+@000003 012e    //     movw r4 ,r28
+@000004 015e    //     movw r10,r28
+@000005 016e    //     movw r12,r28
+@000006 019e    //     movw r18,r28
+@000007 01ae    //     movw r20,r28
+@000008 01de    //     movw r26,r28
+                // 
+@000009 c036    //     rjmp test0_t
+                // ;-------------------
+                //     .org 0x0040
+                // test0_t:
+@000040 9408    //     bset 0
+@000041 f1f0    //     brbs 0,test0_f
+@000042 b65f    //     in   r5 ,sreg
+@000043 c03c    //     rjmp test0_f
+                // 
+                // test1_f:
+@000044 9488    //     bclr 0
+@000045 9418    //     bset 1
+@000046 f1e0    //     brbs 0,test1_t
+@000047 b63f    //     in   r3 ,sreg
+@000048 c03a    //     rjmp test1_t
+                // 
+                // test2_t:
+@000049 9498    //     bclr 1
+@00004a 9428    //     bset 2
+@00004b f1d2    //     brbs 2,test2_f
+@00004c b6af    //     in   r10,sreg
+@00004d c038    //     rjmp test2_f
+                // 
+                // test3_f:
+@00004e 94a8    //     bclr 2
+@00004f 9438    //     bset 3
+@000050 f1c2    //     brbs 2,test3_t
+@000051 b6cf    //     in   r12,sreg
+@000052 c036    //     rjmp test3_t
+                // 
+                // test4_t:
+@000053 94b8    //     bclr 3
+@000054 9448    //     bset 4
+@000055 f1b4    //     brbs 4,test4_f
+@000056 b72f    //     in   r18,sreg
+@000057 c034    //     rjmp test4_f
+                // 
+                // test5_f:
+@000058 94c8    //     bclr 4
+@000059 9458    //     bset 5
+@00005a f1a4    //     brbs 4,test5_t
+@00005b b74f    //     in   r20,sreg
+@00005c c032    //     rjmp test5_t
+                // 
+                // test6_t:
+@00005d 94d8    //     bclr 5
+@00005e 9468    //     bset 6
+@00005f f196    //     brbs 6,test6_f
+@000060 b7af    //     in   r26,sreg
+@000061 c030    //     rjmp test6_f
+                // 
+                // test7_f:
+@000062 94e8    //     bclr 6
+@000063 9478    //     bset 7
+@000064 f186    //     brbs 6,test7_t
+@000065 b7cf    //     in   r28,sreg
+@000066 c02e    //     rjmp test7_t
+                // ;-------------------
+                //     .org 0x0080
+                // test0_f:
+@000080 f219    //     brbs 1,test1_f
+@000081 b64f    //     in   r4 ,sreg
+@000082 cfc1    //     rjmp test1_f
+                // 
+                // test1_t:
+@000083 f229    //     brbs 1,test2_t
+@000084 b62f    //     in   r2 ,sreg
+@000085 cfc3    //     rjmp test2_t
+                // 
+                // test2_f:
+@000086 f23b    //     brbs 3,test3_f
+@000087 b6bf    //     in   r11,sreg
+@000088 cfc5    //     rjmp test3_f
+                // 
+                // test3_t:
+@000089 f24b    //     brbs 3,test4_t
+@00008a b6df    //     in   r13,sreg
+@00008b cfc7    //     rjmp test4_t
+                // 
+                // test4_f:
+@00008c f25d    //     brbs 5,test5_f
+@00008d b73f    //     in   r19,sreg
+@00008e cfc9    //     rjmp test5_f
+                // 
+                // test5_t:
+@00008f f26d    //     brbs 5,test6_t
+@000090 b75f    //     in   r21,sreg
+@000091 cfcb    //     rjmp test6_t
+                // 
+                // test6_f:
+@000092 f27f    //     brbs 7,test7_f
+@000093 b7bf    //     in   r27,sreg
+@000094 cfcd    //     rjmp test7_f
+                // 
+                // test7_t:
+@000095 f157    //     brbs 7,test_end
+@000096 b7df    //     in   r29,sreg
+@000097 c028    //     rjmp test_end
+                // ;-------------------
+                //     .org 0x00c0
+                // test_end:
+@0000c0 e0f1    //     ldi  zh,0x01
+@0000c1 e0e0    //     ldi  zl,0x00
+                // 
+@0000c2 9251    //     st   z+,r5      ; (brbs) b0 (true)
+@0000c3 9241    //     st   z+,r4      ; (brbs) b1 (false)
+@0000c4 9231    //     st   z+,r3      ; (brbs) b0 (false)
+@0000c5 9221    //     st   z+,r2      ; (brbs) b1 (true)
+                // 
+@0000c6 92a1    //     st   z+,r10     ; (brbs) b2 (true)
+@0000c7 92b1    //     st   z+,r11     ; (brbs) b3 (false)
+@0000c8 92c1    //     st   z+,r12     ; (brbs) b2 (false)
+@0000c9 92d1    //     st   z+,r13     ; (brbs) b3 (true)
+                // 
+@0000ca 9321    //     st   z+,r18     ; (brbs) b4 (true)
+@0000cb 9331    //     st   z+,r19     ; (brbs) b5 (false)
+@0000cc 9341    //     st   z+,r20     ; (brbs) b4 (false)
+@0000cd 9351    //     st   z+,r21     ; (brbs) b5 (true)
+                // 
+@0000ce 93a1    //     st   z+,r26     ; (brbs) b6 (true)
+@0000cf 93b1    //     st   z+,r27     ; (brbs) b7 (false)
+@0000d0 93c1    //     st   z+,r28     ; (brbs) b6 (false)
+@0000d1 93d1    //     st   z+,r29     ; (brbs) b7 (true)
+                // ;-------------------
+@0000d2 ef0f    //     ldi  r16,0xff
+@0000d3 9300
+@0000d4 ffff    //     sts  0xffff,r16
+                // halt:
+@0000d5 cfff    //     rjmp halt
+//
+//Assembly complete, 0 errors, 0 warnings

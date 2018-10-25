@@ -1,0 +1,114 @@
+//
+//AVRASM ver. 2.2.0  fn15.asm Sat Oct 20 05:53:26 2018
+//
+                // 
+                // 
+                // ; test for lpm/spm
+                // ;-------------------
+                //     .def yl = r28
+                //     .def yh = r29
+                //     .def zl = r30
+                //     .def zh = r31
+                // ;-------------------
+@000000 ede2    //     ldi  zl ,low (halt)
+@000001 e0f1    //     ldi  zh ,high(halt)
+                // 
+@000002 e140    //     ldi  r20,0x10
+@000003 e250    //     ldi  r21,0x20
+@000004 e360    //     ldi  r22,0x30
+@000005 e470    //     ldi  r23,0x40
+                // 
+@000006 010a    //     movw r0 ,r20
+@000007 9631    //     adiw zl ,1
+@000008 95e8    //     spm
+                // 
+@000009 010b    //     movw r0 ,r22
+@00000a 9631    //     adiw zl ,1
+@00000b 95e8    //     spm
+                // 
+@00000c 9540    //     com  r20
+@00000d 9550    //     com  r21
+@00000e 9560    //     com  r22
+@00000f 9570    //     com  r23
+                // 
+@000010 010a    //     movw r0 ,r20
+@000011 9631    //     adiw zl ,1
+@000012 95e8    //     spm
+                // 
+@000013 010b    //     movw r0 ,r22
+@000014 9631    //     adiw zl ,1
+@000015 95e8    //     spm
+                // ;-------------------
+@000016 ede2    //     ldi  zl ,low (halt)
+@000017 e0f1    //     ldi  zh ,high(halt)
+@000018 9631    //     adiw zl ,1
+@000019 0fee    //     lsl  zl
+@00001a 1fff    //     rol  zh
+                // 
+@00001b 9074    //     lpm  r7 ,z
+@00001c 9631    //     adiw zl ,1
+@00001d 9084    //     lpm  r8 ,z
+@00001e 9631    //     adiw zl ,1
+@00001f 9104    //     lpm  r16,z
+@000020 9631    //     adiw zl ,1
+@000021 9184    //     lpm  r24,z
+@000022 9631    //     adiw zl ,1
+                // 
+@000023 9065    //     lpm  r6 ,z+
+@000024 9095    //     lpm  r9 ,z+
+@000025 9115    //     lpm  r17,z+
+@000026 9195    //     lpm  r25,z+
+                // ;-------------------
+@000027 ecc0    //     ldi  yl ,low (loop)
+@000028 e0d1    //     ldi  yh ,high(loop)
+@000029 0fcc    //     lsl  yl
+@00002a 1fdd    //     rol  yh
+                // 
+@00002b 01fe    //     movw zl ,yl
+@00002c 95c8    //     lpm
+@00002d 2cc0    //     mov  r12,r0
+@00002e 9631    //     adiw zl ,1
+@00002f 95c8    //     lpm
+@000030 2cd0    //     mov  r13,r0
+                // 
+@000031 ece0    //     ldi  zl ,low (loop)
+@000032 e0f1    //     ldi  zh ,high(loop)
+@000033 e040    //     ldi  r20,0x00
+@000034 e050    //     ldi  r21,0x00
+@000035 010a    //     movw r0 ,r20
+@000036 95e8    //     spm
+                // 
+@000037 01fe    //     movw zl ,yl
+@000038 90e5    //     lpm  r14,z+
+@000039 90f5    //     lpm  r15,z+
+                // 
+@00003a c185    //     rjmp loop
+                //     .org 0x01c0
+                // loop:
+@0001c0 cfff    //     rjmp loop   ; Replaced with NOP opcode by SPM instruction
+                // ;-------------------
+@0001c1 e0f1    //     ldi  zh,0x01
+@0001c2 e0e0    //     ldi  zl,0x00
+                // 
+@0001c3 9271    //     st   z+,r7      ; (lpm) 0x10
+@0001c4 9281    //     st   z+,r8      ; (lpm) 0x20
+@0001c5 9301    //     st   z+,r16     ; (lpm) 0x30
+@0001c6 9381    //     st   z+,r24     ; (lpm) 0x40
+                // 
+@0001c7 9261    //     st   z+,r6      ; (lpm) ~0x10
+@0001c8 9291    //     st   z+,r9      ; (lpm) ~0x20
+@0001c9 9311    //     st   z+,r17     ; (lpm) ~0x30
+@0001ca 9391    //     st   z+,r25     ; (lpm) ~0x40
+                // 
+@0001cb 92c1    //     st   z+,r12     ; (lpm) low (rjmp loop)
+@0001cc 92d1    //     st   z+,r13     ; (lpm) high(rjmp loop)
+@0001cd 92e1    //     st   z+,r14     ; (lpm) low (nop)
+@0001ce 92f1    //     st   z+,r15     ; (lpm) high(nop)
+                // ;-------------------
+@0001cf ef0f    //     ldi  r16,0xff
+@0001d0 9300
+@0001d1 ffff    //     sts  0xffff,r16
+                // halt:
+@0001d2 cfff    //     rjmp halt
+//
+//Assembly complete, 0 errors, 0 warnings

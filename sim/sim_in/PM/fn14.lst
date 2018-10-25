@@ -1,0 +1,100 @@
+//
+//AVRASM ver. 2.2.0  fn14.asm Sat Oct 20 05:53:26 2018
+//
+                // 
+                // 
+                // ; test for push/pop
+                // ;-------------------
+                //     .equ spl = 0x3d
+                //     .equ sph = 0x3e
+                // ;-------------------
+@000000 b74d    //     in   r20,spl
+@000001 b75e    //     in   r21,sph
+                // 
+@000002 e100    //     ldi  r16,0x10
+@000003 e280    //     ldi  r24,0x20
+@000004 2e70    //     mov  r7 ,r16
+@000005 2e88    //     mov  r8 ,r24
+@000006 e300    //     ldi  r16,0x30
+@000007 e480    //     ldi  r24,0x40
+                // 
+@000008 927f    //     push r7
+@000009 928f    //     push r8
+@00000a 930f    //     push r16
+@00000b 938f    //     push r24
+                // 
+@00000c b76d    //     in   r22,spl
+@00000d b77e    //     in   r23,sph
+                // 
+@00000e 906f    //     pop  r6
+@00000f 909f    //     pop  r9
+@000010 911f    //     pop  r17
+@000011 919f    //     pop  r25
+                // ;-------------------
+@000012 2c57    //     mov  r5 ,r7
+@000013 2ca8    //     mov  r10,r8
+@000014 2f20    //     mov  r18,r16
+@000015 2fa8    //     mov  r26,r24
+                // 
+@000016 9450    //     com  r5
+@000017 94a0    //     com  r10
+@000018 9520    //     com  r18
+@000019 95a0    //     com  r26
+                // 
+@00001a 925f    //     push r5
+@00001b 92af    //     push r10
+@00001c 932f    //     push r18
+@00001d 93af    //     push r26
+                // 
+                //     .def yl = r28
+                //     .def yh = r29
+@00001e b7cd    //     in   yl ,spl
+@00001f b7de    //     in   yh ,sph
+                // 
+@000020 8049    //     ldd  r4 ,y+1
+@000021 80ba    //     ldd  r11,y+2
+@000022 9622    //     adiw yl ,2
+@000023 bfcd    //     out  spl,yl
+@000024 913f    //     pop  r19
+@000025 91bf    //     pop  r27
+                // ;-------------------
+                //     .def zl = r30
+                //     .def zh = r31
+                // 
+@000026 e0f1    //     ldi  zh,0x01
+@000027 e0e0    //     ldi  zl,0x00
+                // 
+@000028 9271    //     st   z+,r7      ; (ldi) 0x10
+@000029 9281    //     st   z+,r8      ; (ldi) 0x20
+@00002a 9301    //     st   z+,r16     ; (ldi) 0x30
+@00002b 9381    //     st   z+,r24     ; (ldi) 0x40
+                // 
+@00002c 9261    //     st   z+,r6      ; (pop) 0x40
+@00002d 9291    //     st   z+,r9      ; (pop) 0x30
+@00002e 9311    //     st   z+,r17     ; (pop) 0x20
+@00002f 9391    //     st   z+,r25     ; (pop) 0x10
+                // 
+@000030 9251    //     st   z+,r5      ; (ldi) ~0x10
+@000031 92a1    //     st   z+,r10     ; (ldi) ~0x20
+@000032 9321    //     st   z+,r18     ; (ldi) ~0x30
+@000033 93a1    //     st   z+,r26     ; (ldi) ~0x40
+                // 
+@000034 9241    //     st   z+,r4      ; (ldd) ~0x40
+@000035 92b1    //     st   z+,r11     ; (ldd) ~0x30
+@000036 9331    //     st   z+,r19     ; (pop) ~0x20
+@000037 93b1    //     st   z+,r27     ; (pop) ~0x10
+                // 
+@000038 9341    //     st   z+,r20     ; (in) spl (reset value)
+@000039 9351    //     st   z+,r21     ; (in) sph (reset value)
+@00003a 9361    //     st   z+,r22     ; (in) spl (after push)
+@00003b 9371    //     st   z+,r23     ; (in) sph (after push)
+@00003c 93c1    //     st   z+,yl      ; (in) spl (after adiw)
+@00003d 93d1    //     st   z+,yh      ; (in) sph (after adiw)
+                // ;-------------------
+@00003e ef0f    //     ldi  r16,0xff
+@00003f 9300
+@000040 ffff    //     sts  0xffff,r16
+                // halt:
+@000041 cfff    //     rjmp halt
+//
+//Assembly complete, 0 errors, 0 warnings

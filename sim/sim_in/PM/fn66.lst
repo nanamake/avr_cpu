@@ -1,0 +1,144 @@
+//
+//AVRASM ver. 2.2.0  fn66.asm Sat Oct 20 05:53:28 2018
+//
+                // 
+                // 
+                // ; test for mul/sreg
+                // ;-------------------
+                //     .equ sreg = 0x3f
+                // ;-------------------
+@000000 e000    //     ldi  r16,0x00
+@000001 e910    //     ldi  r17,0x90
+@000002 ef20    //     ldi  r18,0xf0
+@000003 ef3f    //     ldi  r19,0xff
+                // ;-------------------
+@000004 bf0f    //     out  sreg,r16
+@000005 9f11    //     mul  r17,r17
+@000006 b62f    //     in   r2 ,sreg
+                // 
+@000007 bf3f    //     out  sreg,r19
+@000008 9f11    //     mul  r17,r17
+@000009 b63f    //     in   r3 ,sreg
+                // 
+@00000a 0120    //     movw r4 ,r0
+                // ;-------------------
+@00000b bf0f    //     out  sreg,r16
+@00000c 0203    //     muls r16,r19
+@00000d b66f    //     in   r6 ,sreg
+                // 
+@00000e bf3f    //     out  sreg,r19
+@00000f 0203    //     muls r16,r19
+@000010 b67f    //     in   r7 ,sreg
+                // 
+@000011 0140    //     movw r8 ,r0
+                // ;-------------------
+@000012 bf0f    //     out  sreg,r16
+@000013 0312    //     mulsu r17,r18
+@000014 b6af    //     in   r10,sreg
+                // 
+@000015 bf3f    //     out  sreg,r19
+@000016 0312    //     mulsu r17,r18
+@000017 b6bf    //     in   r11,sreg
+                // 
+@000018 0160    //     movw r12,r0
+                // ;-------------------
+                //     .def zl = r30
+                //     .def zh = r31
+                // 
+@000019 e0f1    //     ldi  zh,0x01
+@00001a e0e0    //     ldi  zl,0x00
+                // 
+@00001b 9311    //     st   z+,r17     ; (ldi) 0x90
+@00001c 9311    //     st   z+,r17     ; (ldi) 0x90
+@00001d 9241    //     st   z+,r4      ; (mul) 0x90 0x90
+@00001e 9251    //     st   z+,r5
+@00001f 9221    //     st   z+,r2      ; (in) sreg --------
+@000020 9231    //     st   z+,r3      ; (in) sreg ithsvn--
+                // 
+@000021 e0f1    //     ldi  zh,0x01
+@000022 e1e0    //     ldi  zl,0x10
+                // 
+@000023 9301    //     st   z+,r16     ; (ldi) 0x00
+@000024 9331    //     st   z+,r19     ; (ldi) 0xff
+@000025 9281    //     st   z+,r8      ; (muls) 0x00 0xff
+@000026 9291    //     st   z+,r9
+@000027 9261    //     st   z+,r6      ; (in) sreg ------z-
+@000028 9271    //     st   z+,r7      ; (in) sreg ithsvnz-
+                // 
+@000029 e0f1    //     ldi  zh,0x01
+@00002a e2e0    //     ldi  zl,0x20
+                // 
+@00002b 9311    //     st   z+,r17     ; (ldi) 0x90
+@00002c 9321    //     st   z+,r18     ; (ldi) 0xf0
+@00002d 92c1    //     st   z+,r12     ; (mulsu) 0x90 0xf0
+@00002e 92d1    //     st   z+,r13
+@00002f 92a1    //     st   z+,r10     ; (in) sreg -------c
+@000030 92b1    //     st   z+,r11     ; (in) sreg ithsvn-c
+                // ;-------------------
+@000031 bf0f    //     out  sreg,r16
+@000032 0319    //     fmul r17,r17
+@000033 b62f    //     in   r2 ,sreg
+                // 
+@000034 bf3f    //     out  sreg,r19
+@000035 0319    //     fmul r17,r17
+@000036 b63f    //     in   r3 ,sreg
+                // 
+@000037 0120    //     movw r4 ,r0
+                // ;-------------------
+@000038 bf0f    //     out  sreg,r16
+@000039 0383    //     fmuls r16,r19
+@00003a b66f    //     in   r6 ,sreg
+                // 
+@00003b bf3f    //     out  sreg,r19
+@00003c 0383    //     fmuls r16,r19
+@00003d b67f    //     in   r7 ,sreg
+                // 
+@00003e 0140    //     movw r8 ,r0
+                // ;-------------------
+@00003f bf0f    //     out  sreg,r16
+@000040 039a    //     fmulsu r17,r18
+@000041 b6af    //     in   r10,sreg
+                // 
+@000042 bf3f    //     out  sreg,r19
+@000043 039a    //     fmulsu r17,r18
+@000044 b6bf    //     in   r11,sreg
+                // 
+@000045 0160    //     movw r12,r0
+                // ;-------------------
+@000046 e0f1    //     ldi  zh,0x01
+@000047 e0e8    //     ldi  zl,0x08
+                // 
+@000048 9311    //     st   z+,r17     ; (ldi) 0x90
+@000049 9311    //     st   z+,r17     ; (ldi) 0x90
+@00004a 9241    //     st   z+,r4      ; (fmul) 0x90 0x90
+@00004b 9251    //     st   z+,r5
+@00004c 9221    //     st   z+,r2      ; (in) sreg --------
+@00004d 9231    //     st   z+,r3      ; (in) sreg ithsvn--
+                // 
+@00004e e0f1    //     ldi  zh,0x01
+@00004f e1e8    //     ldi  zl,0x18
+                // 
+@000050 9301    //     st   z+,r16     ; (ldi) 0x00
+@000051 9331    //     st   z+,r19     ; (ldi) 0xff
+@000052 9281    //     st   z+,r8      ; (fmuls) 0x00 0xff
+@000053 9291    //     st   z+,r9
+@000054 9261    //     st   z+,r6      ; (in) sreg ------z-
+@000055 9271    //     st   z+,r7      ; (in) sreg ithsvnz-
+                // 
+@000056 e0f1    //     ldi  zh,0x01
+@000057 e2e8    //     ldi  zl,0x28
+                // 
+@000058 9311    //     st   z+,r17     ; (ldi) 0x90
+@000059 9321    //     st   z+,r18     ; (ldi) 0xf0
+@00005a 92c1    //     st   z+,r12     ; (fmulsu) 0x90 0xf0
+@00005b 92d1    //     st   z+,r13
+@00005c 92a1    //     st   z+,r10     ; (in) sreg -------c
+@00005d 92b1    //     st   z+,r11     ; (in) sreg ithsvn-c
+                // ;-------------------
+@00005e ef0f    //     ldi  r16,0xff
+@00005f 9300
+@000060 ffff    //     sts  0xffff,r16
+                // halt:
+@000061 cfff    //     rjmp halt
+//
+//Assembly complete, 0 errors, 0 warnings

@@ -1,0 +1,6 @@
+# vsim +nowarnTSCALE -do {log -r /*;run -all} -l vsim.log -c -quiet TB 
+# log -r /* 
+# run -all 
+# [PASSED] All RAM contents matched.
+# ** Note: $finish    : ./tb/TB.v(134)
+#    Time: 2520 ns  Iteration: 0  Instance: /TB

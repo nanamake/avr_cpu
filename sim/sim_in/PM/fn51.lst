@@ -1,0 +1,104 @@
+//
+//AVRASM ver. 2.2.0  fn51.asm Sat Oct 20 05:53:27 2018
+//
+                // 
+                // 
+                // ; test for sbrc
+                // ;-------------------
+@000000 e0c0    //     ldi  r28,0x00
+@000001 e0d0    //     ldi  r29,0x00
+                // 
+@000002 011e    //     movw r2 ,r28
+@000003 012e    //     movw r4 ,r28
+@000004 015e    //     movw r10,r28
+@000005 016e    //     movw r12,r28
+@000006 019e    //     movw r18,r28
+@000007 01ae    //     movw r20,r28
+@000008 01de    //     movw r26,r28
+                // 
+@000009 ef0e    //     ldi  r16,0xfe
+@00000a ef1d    //     ldi  r17,0xfd
+@00000b ef8b    //     ldi  r24,0xfb
+@00000c ef97    //     ldi  r25,0xf7
+@00000d 2e70    //     mov  r7 ,r16
+@00000e 2e61    //     mov  r6 ,r17
+@00000f 2e88    //     mov  r8 ,r24
+@000010 2e99    //     mov  r9 ,r25
+@000011 ee0f    //     ldi  r16,0xef
+@000012 ed1f    //     ldi  r17,0xdf
+@000013 eb8f    //     ldi  r24,0xbf
+@000014 e79f    //     ldi  r25,0x7f
+                // ;-------------------
+@000015 fc70    //     sbrc r7 ,0
+@000016 2c57    //     mov  r5 ,r7
+@000017 fc71    //     sbrc r7 ,1
+@000018 2c47    //     mov  r4 ,r7
+                // 
+@000019 fc61    //     sbrc r6 ,1
+@00001a 2c36    //     mov  r3 ,r6
+@00001b fc60    //     sbrc r6 ,0
+@00001c 2c26    //     mov  r2 ,r6
+                // 
+@00001d fc82    //     sbrc r8 ,2
+@00001e 2ca8    //     mov  r10,r8
+@00001f fc83    //     sbrc r8 ,3
+@000020 2cb8    //     mov  r11,r8
+                // 
+@000021 fc93    //     sbrc r9 ,3
+@000022 2cc9    //     mov  r12,r9
+@000023 fc92    //     sbrc r9 ,2
+@000024 2cd9    //     mov  r13,r9
+                // 
+@000025 fd04    //     sbrc r16,4
+@000026 2f20    //     mov  r18,r16
+@000027 fd05    //     sbrc r16,5
+@000028 2f30    //     mov  r19,r16
+                // 
+@000029 fd15    //     sbrc r17,5
+@00002a 2f41    //     mov  r20,r17
+@00002b fd14    //     sbrc r17,4
+@00002c 2f51    //     mov  r21,r17
+                // 
+@00002d fd86    //     sbrc r24,6
+@00002e 2fa8    //     mov  r26,r24
+@00002f fd87    //     sbrc r24,7
+@000030 2fb8    //     mov  r27,r24
+                // 
+@000031 fd97    //     sbrc r25,7
+@000032 2fc9    //     mov  r28,r25
+@000033 fd96    //     sbrc r25,6
+@000034 2fd9    //     mov  r29,r25
+                // ;-------------------
+                //     .def zl = r30
+                //     .def zh = r31
+                // 
+@000035 e0f1    //     ldi  zh,0x01
+@000036 e0e0    //     ldi  zl,0x00
+                // 
+@000037 9251    //     st   z+,r5      ; (sbrc) 0xfe b0
+@000038 9241    //     st   z+,r4      ; (sbrc) 0xfe b1
+@000039 9231    //     st   z+,r3      ; (sbrc) 0xfd b1
+@00003a 9221    //     st   z+,r2      ; (sbrc) 0xfd b0
+                // 
+@00003b 92a1    //     st   z+,r10     ; (sbrc) 0xfb b2
+@00003c 92b1    //     st   z+,r11     ; (sbrc) 0xfb b3
+@00003d 92c1    //     st   z+,r12     ; (sbrc) 0xf7 b3
+@00003e 92d1    //     st   z+,r13     ; (sbrc) 0xf7 b2
+                // 
+@00003f 9321    //     st   z+,r18     ; (sbrc) 0xef b4
+@000040 9331    //     st   z+,r19     ; (sbrc) 0xef b5
+@000041 9341    //     st   z+,r20     ; (sbrc) 0xdf b5
+@000042 9351    //     st   z+,r21     ; (sbrc) 0xdf b4
+                // 
+@000043 93a1    //     st   z+,r26     ; (sbrc) 0xbf b6
+@000044 93b1    //     st   z+,r27     ; (sbrc) 0xbf b7
+@000045 93c1    //     st   z+,r28     ; (sbrc) 0x7f b7
+@000046 93d1    //     st   z+,r29     ; (sbrc) 0x7f b6
+                // ;-------------------
+@000047 ef0f    //     ldi  r16,0xff
+@000048 9300
+@000049 ffff    //     sts  0xffff,r16
+                // halt:
+@00004a cfff    //     rjmp halt
+//
+//Assembly complete, 0 errors, 0 warnings

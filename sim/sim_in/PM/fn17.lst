@@ -1,0 +1,85 @@
+//
+//AVRASM ver. 2.2.0  fn17.asm Sat Oct 20 05:53:26 2018
+//
+                // 
+                // 
+                // ; test for memory mapped rf
+                // ;---------------------------
+                //     .equ mmreg4  = 4;
+                //     .equ mmreg5  = 5;
+                //     .equ mmreg6  = 6;
+                //     .equ mmreg7  = 7;
+                //     .equ mmreg24 = 24;
+                //     .equ mmreg25 = 25;
+                //     .equ mmreg26 = 26;
+                //     .equ mmreg27 = 27;
+                // 
+                //     .def zl = r30
+                //     .def zh = r31
+@000000 e0f0    //     ldi  zh ,0x00
+                // ;-------------------
+@000001 e001    //     ldi  r16,0x01
+@000002 e012    //     ldi  r17,0x02
+@000003 e024    //     ldi  r18,0x04
+@000004 e038    //     ldi  r19,0x08
+@000005 e140    //     ldi  r20,0x10
+@000006 e250    //     ldi  r21,0x20
+@000007 e460    //     ldi  r22,0x40
+@000008 e870    //     ldi  r23,0x80
+                // 
+@000009 9300
+@00000a 0004    //     sts  mmreg4,r16
+@00000b e0e5    //     ldi  zl ,mmreg5
+@00000c 9311    //     st   z+ ,r17
+@00000d 9321    //     st   z+ ,r18
+@00000e 8330    //     st   z  ,r19
+                // 
+@00000f 9370
+@000010 001b    //     sts  mmreg27,r23
+@000011 e1ea    //     ldi  zl ,mmreg26
+@000012 8360    //     st   z  ,r22
+@000013 9352    //     st   -z ,r21
+@000014 9342    //     st   -z ,r20
+                // ;-------------------
+@000015 9440    //     com  r4
+@000016 9450    //     com  r5
+@000017 9460    //     com  r6
+@000018 9470    //     com  r7
+@000019 9580    //     com  r24
+@00001a 9590    //     com  r25
+@00001b 95a0    //     com  r26
+@00001c 95b0    //     com  r27
+                // 
+@00001d 9080
+@00001e 0004    //     lds  r8 ,mmreg4
+@00001f e0e5    //     ldi  zl ,mmreg5
+@000020 9091    //     ld   r9 ,z+
+@000021 90a1    //     ld   r10,z+
+@000022 80b0    //     ld   r11,z
+                // 
+@000023 90f0
+@000024 001b    //     lds  r15,mmreg27
+@000025 e1ea    //     ldi  zl ,mmreg26
+@000026 80e0    //     ld   r14,z
+@000027 90d2    //     ld   r13,-z
+@000028 90c2    //     ld   r12,-z
+                // ;-------------------
+@000029 e0f1    //     ldi  zh,0x01
+@00002a e0e0    //     ldi  zl,0x00
+                // 
+@00002b 9281    //     st   z+,r8      ; (st/ld) mmreg4
+@00002c 9291    //     st   z+,r9      ; (st/ld) mmreg5
+@00002d 92a1    //     st   z+,r10     ; (st/ld) mmreg6
+@00002e 92b1    //     st   z+,r11     ; (st/ld) mmreg7
+@00002f 92c1    //     st   z+,r12     ; (st/ld) mmreg24
+@000030 92d1    //     st   z+,r13     ; (st/ld) mmreg25
+@000031 92e1    //     st   z+,r14     ; (st/ld) mmreg26
+@000032 92f1    //     st   z+,r15     ; (st/ld) mmreg27
+                // ;-------------------
+@000033 ef0f    //     ldi  r16,0xff
+@000034 9300
+@000035 ffff    //     sts  0xffff,r16
+                // halt:
+@000036 cfff    //     rjmp halt
+//
+//Assembly complete, 0 errors, 0 warnings

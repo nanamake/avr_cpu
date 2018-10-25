@@ -1,0 +1,114 @@
+//
+//AVRASM ver. 2.2.0  fn32.asm Sat Oct 20 05:53:27 2018
+//
+                // 
+                // 
+                // ; test for sbi/cbi
+                // ;-------------------
+                //     .equ ioreg0 = 0x00  ; i/o register dummy
+                //     .equ ioreg1 = 0x01  ; i/o register dummy
+                //     .equ ioreg2 = 0x02  ; i/o register dummy
+                //     .equ ioreg3 = 0x1f  ; i/o register dummy
+                // ;-------------------
+@000000 b000    //     in   r0 ,ioreg0
+@000001 b011    //     in   r1 ,ioreg1
+@000002 b022    //     in   r2 ,ioreg2
+@000003 b23f    //     in   r3 ,ioreg3
+                // 
+@000004 9a00    //     sbi  ioreg0,0
+@000005 9a09    //     sbi  ioreg1,1
+@000006 9a12    //     sbi  ioreg2,2
+@000007 9afb    //     sbi  ioreg3,3
+                // 
+@000008 b040    //     in   r4 ,ioreg0
+@000009 b051    //     in   r5 ,ioreg1
+@00000a b062    //     in   r6 ,ioreg2
+@00000b b27f    //     in   r7 ,ioreg3
+                // 
+@00000c 9afc    //     sbi  ioreg3,4
+@00000d 9a15    //     sbi  ioreg2,5
+@00000e 9a0e    //     sbi  ioreg1,6
+@00000f 9a07    //     sbi  ioreg0,7
+                // 
+@000010 b080    //     in   r8 ,ioreg0
+@000011 b091    //     in   r9 ,ioreg1
+@000012 b0a2    //     in   r10,ioreg2
+@000013 b2bf    //     in   r11,ioreg3
+                // ;-------------------
+@000014 ef8f    //     ldi  r24,0xff
+@000015 b980    //     out  ioreg0,r24
+@000016 b981    //     out  ioreg1,r24
+@000017 b982    //     out  ioreg2,r24
+@000018 bb8f    //     out  ioreg3,r24
+                // 
+@000019 b0c0    //     in   r12,ioreg0
+@00001a b0d1    //     in   r13,ioreg1
+@00001b b0e2    //     in   r14,ioreg2
+@00001c b2ff    //     in   r15,ioreg3
+                // 
+@00001d 98f8    //     cbi  ioreg3,0
+@00001e 9811    //     cbi  ioreg2,1
+@00001f 980a    //     cbi  ioreg1,2
+@000020 9803    //     cbi  ioreg0,3
+                // 
+@000021 b100    //     in   r16,ioreg0
+@000022 b111    //     in   r17,ioreg1
+@000023 b122    //     in   r18,ioreg2
+@000024 b33f    //     in   r19,ioreg3
+                // 
+@000025 9804    //     cbi  ioreg0,4
+@000026 980d    //     cbi  ioreg1,5
+@000027 9816    //     cbi  ioreg2,6
+@000028 98ff    //     cbi  ioreg3,7
+                // 
+@000029 b140    //     in   r20,ioreg0
+@00002a b151    //     in   r21,ioreg1
+@00002b b162    //     in   r22,ioreg2
+@00002c b37f    //     in   r23,ioreg3
+                // ;-------------------
+                //     .def zl = r30
+                //     .def zh = r31
+                // 
+@00002d e0f1    //     ldi  zh,0x01
+@00002e e0e0    //     ldi  zl,0x00
+                // 
+@00002f 9201    //     st   z+,r0      ; (in) ioreg0 (reset=0x00)
+@000030 9211    //     st   z+,r1      ; (in) ioreg1 (reset=0x00)
+@000031 9221    //     st   z+,r2      ; (in) ioreg2 (reset=0x00)
+@000032 9231    //     st   z+,r3      ; (in) ioreg3 (reset=0x00)
+                // 
+@000033 9241    //     st   z+,r4      ; (sbi) ioreg0 b0
+@000034 9251    //     st   z+,r5      ; (sbi) ioreg1 b1
+@000035 9261    //     st   z+,r6      ; (sbi) ioreg2 b2
+@000036 9271    //     st   z+,r7      ; (sbi) ioreg3 b3
+                // 
+@000037 9281    //     st   z+,r8      ; (sbi) ioreg0 b7
+@000038 9291    //     st   z+,r9      ; (sbi) ioreg1 b6
+@000039 92a1    //     st   z+,r10     ; (sbi) ioreg2 b5
+@00003a 92b1    //     st   z+,r11     ; (sbi) ioreg3 b4
+                // 
+@00003b e0f1    //     ldi  zh,0x01
+@00003c e1e0    //     ldi  zl,0x10
+                // 
+@00003d 92c1    //     st   z+,r12     ; (in) ioreg0 (out=0xff)
+@00003e 92d1    //     st   z+,r13     ; (in) ioreg1 (out=0xff)
+@00003f 92e1    //     st   z+,r14     ; (in) ioreg2 (out=0xff)
+@000040 92f1    //     st   z+,r15     ; (in) ioreg3 (out=0xff)
+                // 
+@000041 9301    //     st   z+,r16     ; (cbi) ioreg0 b3
+@000042 9311    //     st   z+,r17     ; (cbi) ioreg1 b2
+@000043 9321    //     st   z+,r18     ; (cbi) ioreg2 b1
+@000044 9331    //     st   z+,r19     ; (cbi) ioreg3 b0
+                // 
+@000045 9341    //     st   z+,r20     ; (cbi) ioreg0 b4
+@000046 9351    //     st   z+,r21     ; (cbi) ioreg1 b5
+@000047 9361    //     st   z+,r22     ; (cbi) ioreg2 b6
+@000048 9371    //     st   z+,r23     ; (cbi) ioreg3 b7
+                // ;-------------------
+@000049 ef0f    //     ldi  r16,0xff
+@00004a 9300
+@00004b ffff    //     sts  0xffff,r16
+                // halt:
+@00004c cfff    //     rjmp halt
+//
+//Assembly complete, 0 errors, 0 warnings

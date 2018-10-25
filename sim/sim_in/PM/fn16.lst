@@ -1,0 +1,113 @@
+//
+//AVRASM ver. 2.2.0  fn16.asm Sat Oct 20 05:53:26 2018
+//
+                // 
+                // 
+                // ; test for ld/st i/o space
+                // ;---------------------------
+                //     .equ ioreg0 = 0x00  ; i/o register dummy
+                //     .equ ioreg1 = 0x01  ; i/o register dummy
+                //     .equ ioreg2 = 0x02  ; i/o register dummy
+                //     .equ ioreg3 = 0x1f  ; i/o register dummy
+                // 
+                //     .equ ioreg4 = 0x3c  ; i/o register dummy
+                //     .equ spl    = 0x3d  ; stack pointer low byte
+                //     .equ sph    = 0x3e  ; stack pointer high byte
+                //     .equ sreg   = 0x3f  ; status register
+                // 
+                //     .def zl = r30
+                //     .def zh = r31
+@000000 e0f0    //     ldi  zh ,0x00
+                // ;-------------------
+@000001 e001    //     ldi  r16,0x01
+@000002 e012    //     ldi  r17,0x02
+@000003 e024    //     ldi  r18,0x04
+@000004 e038    //     ldi  r19,0x08
+@000005 e140    //     ldi  r20,0x10
+@000006 e250    //     ldi  r21,0x20
+@000007 e460    //     ldi  r22,0x40
+@000008 e870    //     ldi  r23,0x80
+                // 
+@000009 e2e0    //     ldi  zl ,ioreg0+0x20
+@00000a 9301    //     st   z+ ,r16
+@00000b 9311    //     st   z+ ,r17
+@00000c 8320    //     st   z  ,r18
+@00000d 9330
+@00000e 003f    //     sts  ioreg3+0x20,r19
+                // 
+@00000f 9370
+@000010 005f    //     sts  sreg+0x20,r23
+@000011 e5ee    //     ldi  zl ,sph+0x20
+@000012 8360    //     st   z  ,r22
+@000013 9352    //     st   -z ,r21
+@000014 9342    //     st   -z ,r20
+                // 
+@000015 b000    //     in   r0 ,ioreg0
+@000016 b011    //     in   r1 ,ioreg1
+@000017 b022    //     in   r2 ,ioreg2
+@000018 b23f    //     in   r3 ,ioreg3
+@000019 b64c    //     in   r4 ,ioreg4
+@00001a b65d    //     in   r5 ,spl
+@00001b b66e    //     in   r6 ,sph
+@00001c b67f    //     in   r7 ,sreg
+                // ;-------------------
+@00001d 9500    //     com  r16
+@00001e 9510    //     com  r17
+@00001f 9520    //     com  r18
+@000020 9530    //     com  r19
+@000021 9540    //     com  r20
+@000022 9550    //     com  r21
+@000023 9560    //     com  r22
+@000024 9570    //     com  r23
+                // 
+@000025 b900    //     out  ioreg0,r16
+@000026 b911    //     out  ioreg1,r17
+@000027 b922    //     out  ioreg2,r18
+@000028 bb3f    //     out  ioreg3,r19
+@000029 bf4c    //     out  ioreg4,r20
+@00002a bf5d    //     out  spl   ,r21
+@00002b bf6e    //     out  sph   ,r22
+@00002c bf7f    //     out  sreg  ,r23
+                // 
+@00002d e2e0    //     ldi  zl ,ioreg0+0x20
+@00002e 9081    //     ld   r8 ,z+
+@00002f 9091    //     ld   r9 ,z+
+@000030 80a0    //     ld   r10,z
+@000031 90b0
+@000032 003f    //     lds  r11,ioreg3+0x20
+                // 
+@000033 90f0
+@000034 005f    //     lds  r15,sreg+0x20
+@000035 e5ee    //     ldi  zl ,sph+0x20
+@000036 80e0    //     ld   r14,z
+@000037 90d2    //     ld   r13,-z
+@000038 90c2    //     ld   r12,-z
+                // ;-------------------
+@000039 e0f1    //     ldi  zh,0x01
+@00003a e0e0    //     ldi  zl,0x00
+                // 
+@00003b 9201    //     st   z+,r0      ; (st) ioreg0
+@00003c 9211    //     st   z+,r1      ; (st) ioreg1
+@00003d 9221    //     st   z+,r2      ; (st) ioreg2
+@00003e 9231    //     st   z+,r3      ; (st) ioreg3
+@00003f 9241    //     st   z+,r4      ; (st) ioreg4
+@000040 9251    //     st   z+,r5      ; (st) spl
+@000041 9261    //     st   z+,r6      ; (st) sph
+@000042 9271    //     st   z+,r7      ; (st) sreg
+                // 
+@000043 9281    //     st   z+,r8      ; (ld) ioreg0
+@000044 9291    //     st   z+,r9      ; (ld) ioreg1
+@000045 92a1    //     st   z+,r10     ; (ld) ioreg2
+@000046 92b1    //     st   z+,r11     ; (ld) ioreg3
+@000047 92c1    //     st   z+,r12     ; (ld) ioreg4
+@000048 92d1    //     st   z+,r13     ; (ld) spl
+@000049 92e1    //     st   z+,r14     ; (ld) sph
+@00004a 92f1    //     st   z+,r15     ; (ld) sreg
+                // ;-------------------
+@00004b ef0f    //     ldi  r16,0xff
+@00004c 9300
+@00004d ffff    //     sts  0xffff,r16
+                // halt:
+@00004e cfff    //     rjmp halt
+//
+//Assembly complete, 0 errors, 0 warnings
