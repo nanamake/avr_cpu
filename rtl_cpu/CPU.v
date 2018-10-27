@@ -54,16 +54,6 @@ wire        sel_sbc_w;
 wire        sel_and;
 wire        sel_or;
 wire        sel_eor;
-wire        sel_asr;
-wire        sel_lsr;
-wire        sel_ror;
-wire        sel_swap;
-wire        sel_mul;
-wire        sel_muls;
-wire        sel_mulsu;
-wire        sel_fmul;
-wire        sel_fmuls;
-wire        sel_fmulsu;
 wire[15:0]  alu_ro;
 wire        alu_cf;
 wire        alu_zf;
@@ -74,6 +64,8 @@ wire        alu_hf;
 wire[15:0]  mul_ro;
 wire        mul_cf;
 wire        mul_zf;
+wire[15:0]  ptr_ai;
+wire[15:0]  ptr_ro;
 wire[7:0]   bsc_ro;
 wire        bst_tf;
 wire        mm_sp_l_we;
@@ -95,15 +87,18 @@ wire[4:0]   rf_raddr_b;
 wire[15:0]  rf_rdata_a;
 wire[7:0]   rf_rdata_b;
 wire[15:0]  sp;
-wire[15:0]  sp_pre;
 wire[7:0]   sreg;
 wire        sr_cf;
+wire        sr_zf;
 wire        sr_tf;
 wire        sr_if;
 
 //----------------------------------------------------------------------
 //  Program Counter and Instruction Decoder
 //----------------------------------------------------------------------
+//  To shorten the critical path, use "cpse_zf" instead of "alu_zf".
+wire        cpse_zf = (rf_rdata_a[7:0] == rf_rdata_b);
+
 PcAndIr PAI (
     .clock      (clock      ),  //  (i) Master clock
     .reset      (reset      ),  //  (i) Active high asynchronous reset
@@ -113,7 +108,7 @@ PcAndIr PAI (
     .rf_rdata   (rf_rdata_b ),  //  (i) Register file read data
     .sreg       (sreg       ),  //  (i) Status register
     .alu_ro     (alu_ro     ),  //  (i) ALU result
-    .alu_zf     (alu_zf     ),  //  (i) ALU zero flag
+    .alu_zf     (cpse_zf    ),  //  (i) ALU zero flag
     .irq        (irq        ),  //  (i) Interrupt request
     .irq_addr   (irq_addr   ),  //  (i) Interrupt vector address
     .sr_if      (sr_if      ),  //  (i) Interrupt flag in status register
@@ -169,34 +164,22 @@ AluInput AIN (
     .sel_sbc_w  (sel_sbc_w  ),  //  (o) Operation SBC(16-bit) enable
     .sel_and    (sel_and    ),  //  (o) Operation AND enable
     .sel_or     (sel_or     ),  //  (o) Operation OR enable
-    .sel_eor    (sel_eor    ),  //  (o) Operation EOR enable
-    .sel_asr    (sel_asr    ),  //  (o) Operation ASR enable
-    .sel_lsr    (sel_lsr    ),  //  (o) Operation LSR enable
-    .sel_ror    (sel_ror    ),  //  (o) Operation ROR enable
-    .sel_swap   (sel_swap   ),  //  (o) Operation SWAP enable
-    .sel_mul    (sel_mul    ),  //  (o) Operation MUL enable
-    .sel_muls   (sel_muls   ),  //  (o) Operation MULS enable
-    .sel_mulsu  (sel_mulsu  ),  //  (o) Operation MULSU enable
-    .sel_fmul   (sel_fmul   ),  //  (o) Operation FMUL enable
-    .sel_fmuls  (sel_fmuls  ),  //  (o) Operation FMULS enable
-    .sel_fmulsu (sel_fmulsu )   //  (o) Operation FMULSU enable
+    .sel_eor    (sel_eor    )   //  (o) Operation EOR enable
 );
 
 ALU ALU (
     .ai         (alu_ai     ),  //  (i) Operand A
     .bi         (alu_bi     ),  //  (i) Operand B
     .ci         (alu_ci     ),  //  (i) Carry input
-    .op_adc_b   (sel_adc_b  ),  //  (i) Operation ADC(8-bit) enable
-    .op_sbc_b   (sel_sbc_b  ),  //  (i) Operation SBC(8-bit) enable
-    .op_adc_w   (sel_adc_w  ),  //  (i) Operation ADC(16-bit) enable
-    .op_sbc_w   (sel_sbc_w  ),  //  (i) Operation SBC(16-bit) enable
-    .op_and     (sel_and    ),  //  (i) Operation AND enable
-    .op_or      (sel_or     ),  //  (i) Operation OR enable
-    .op_eor     (sel_eor    ),  //  (i) Operation EOR enable
-    .op_asr     (sel_asr    ),  //  (i) Operation ASR enable
-    .op_lsr     (sel_lsr    ),  //  (i) Operation LSR enable
-    .op_ror     (sel_ror    ),  //  (i) Operation ROR enable
-    .op_swap    (sel_swap   ),  //  (i) Operation SWAP enable
+    .sel_adc_b  (sel_adc_b  ),  //  (i) Operation ADC(8-bit) enable
+    .sel_sbc_b  (sel_sbc_b  ),  //  (i) Operation SBC(8-bit) enable
+    .sel_adc_w  (sel_adc_w  ),  //  (i) Operation ADC(16-bit) enable
+    .sel_sbc_w  (sel_sbc_w  ),  //  (i) Operation SBC(16-bit) enable
+    .sel_and    (sel_and    ),  //  (i) Operation AND enable
+    .sel_or     (sel_or     ),  //  (i) Operation OR enable
+    .sel_eor    (sel_eor    ),  //  (i) Operation EOR enable
+    .sr_zf      (sr_zf      ),  //  (i) Zero flag in status register
+    .op_decode  (op_decode  ),  //  (i) Decoded opcodes
     .ro         (alu_ro     ),  //  (o) Result output
     .cf         (alu_cf     ),  //  (o) Carry flag
     .zf         (alu_zf     ),  //  (o) Zero flag
@@ -210,15 +193,19 @@ Multiply MUL (
     .clock      (clock      ),  //  (i) Master clock
     .ai         (alu_ai[7:0]),  //  (i) Operand A
     .bi         (alu_bi[7:0]),  //  (i) Operand B
-    .op_mul     (sel_mul    ),  //  (i) Operation MUL enable
-    .op_muls    (sel_muls   ),  //  (i) Operation MULS enable
-    .op_mulsu   (sel_mulsu  ),  //  (i) Operation MULSU enable
-    .op_fmul    (sel_fmul   ),  //  (i) Operation FMUL enable
-    .op_fmuls   (sel_fmuls  ),  //  (i) Operation FMULS enable
-    .op_fmulsu  (sel_fmulsu ),  //  (i) Operation FMULSU enable
+    .op_decode  (op_decode  ),  //  (i) Decoded opcodes
     .ro         (mul_ro     ),  //  (o) Result output
     .cf         (mul_cf     ),  //  (o) Carry flag
     .zf         (mul_zf     )   //  (o) Zero flag
+);
+
+PtrCalc PTR (
+    .ir         (ir         ),  //  (i) Instruction word
+    .ir_2nd     (ir_2nd     ),  //  (i) Instruction 2nd word
+    .sp         (sp         ),  //  (i) Stack pointer
+    .rf_rdata_a (rf_rdata_a ),  //  (i) Register file Port A data
+    .ptr_ai     (ptr_ai     ),  //  (o) Pointer pre-calculation value
+    .ptr_ro     (ptr_ro     )   //  (o) Pointer calculation result
 );
 
 BitSetClr BSC (
@@ -263,12 +250,11 @@ DmCont DMC (
     .rf_rdata   (rf_rdata_b ),  //  (i) Register file read data
     .sreg       (sreg       ),  //  (i) Status register
     .sp         (sp         ),  //  (i) Stack pointer
-    .sp_pre     (sp_pre     ),  //  (i) Stack pointer pre-incremented value
     .pc         (pc         ),  //  (i) Program counter
     .ir         (ir         ),  //  (i) Instruction register
     .cycle      (cycle      ),  //  (i) Cycle counter
-    .alu_ai     (alu_ai     ),  //  (i) ALU operand A
-    .alu_ro     (alu_ro     ),  //  (i) ALU result
+    .ptr_ai     (ptr_ai     ),  //  (i) Pointer pre-calculation value
+    .ptr_ro     (ptr_ro     ),  //  (i) Pointer calculation result
     .bsc_ro     (bsc_ro     ),  //  (i) Bit set/clear result
     .op_decode  (op_decode  ),  //  (i) Decoded opcodes
     .tim_dm_re  (tim_dm_re  ),  //  (i) Timing of data memory space read
@@ -306,6 +292,7 @@ RfWrite RFW (
     .cycle      (cycle      ),  //  (i) Cycle count
     .alu_ro     (alu_ro     ),  //  (i) ALU result
     .mul_ro     (mul_ro     ),  //  (i) Multiplication result
+    .ptr_ro     (ptr_ro     ),  //  (i) Pointer calculation result
     .bsc_ro     (bsc_ro     ),  //  (i) Bit set/clear result
     .mm_rdata   (mm_rdata   ),  //  (i) Data memory space read data
     .mm_rdata_en(mm_rdata_en),  //  (i) Data memory space read data enable
@@ -343,6 +330,7 @@ SregAndSp SAS (
     .alu_hf     (alu_hf     ),  //  (i) ALU half carry flag
     .mul_cf     (mul_cf     ),  //  (i) Multiplication carry flag
     .mul_zf     (mul_zf     ),  //  (i) Multiplication zero flag
+    .ptr_ro     (ptr_ro     ),  //  (i) Pointer calculation result
     .bsc_ro     (bsc_ro     ),  //  (i) Bit set/clear result
     .bst_tf     (bst_tf     ),  //  (i) BST instruction transfer bit
     .mm_sp_l_we (mm_sp_l_we ),  //  (i) Stack pointer low byte write enable
@@ -351,13 +339,12 @@ SregAndSp SAS (
     .mm_io_wdata(mm_io_wdata),  //  (i) Memory mapped I/O write data
     .irq_det    (irq_det    ),  //  (i) Interrupt detected (accepted)
     .irq_ret    (irq_ret    ),  //  (i) Interrupt returned
-    .op_decode  (op_decode  ),  //  (i) Decoded opcodes
     .tim_sr_en  (tim_sr_en  ),  //  (i) Timing of status register update
     .tim_sp_en  (tim_sp_en  ),  //  (i) Timing of stack pointer update
     .sp         (sp         ),  //  (o) Stack pointer
-    .sp_pre     (sp_pre     ),  //  (o) Stack pointer pre-incremented value
     .sreg       (sreg       ),  //  (o) Status register
     .sr_cf      (sr_cf      ),  //  (o) Status register carry flag
+    .sr_zf      (sr_zf      ),  //  (o) Status register zero flag
     .sr_tf      (sr_tf      ),  //  (o) Status register transfer bit
     .sr_if      (sr_if      )   //  (o) Status register interrupt flag
 );

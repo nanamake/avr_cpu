@@ -1,5 +1,5 @@
 Analysis & Synthesis report for MCU
-Sat Oct 20 23:23:20 2018
+Sat Oct 27 17:28:53 2018
 Quartus II 64-Bit Version 14.0.0 Build 200 06/17/2014 SJ Web Edition
 
 
@@ -63,13 +63,13 @@ agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Oct 20 23:23:20 2018      ;
+; Analysis & Synthesis Status        ; Successful - Sat Oct 27 17:28:53 2018      ;
 ; Quartus II 64-Bit Version          ; 14.0.0 Build 200 06/17/2014 SJ Web Edition ;
 ; Revision Name                      ; MCU                                        ;
 ; Top-level Entity Name              ; MCU                                        ;
 ; Family                             ; Cyclone IV E                               ;
-; Total logic elements               ; 1,812                                      ;
-;     Total combinational functions  ; 1,457                                      ;
+; Total logic elements               ; 1,845                                      ;
+;     Total combinational functions  ; 1,490                                      ;
 ;     Dedicated logic registers      ; 520                                        ;
 ; Total registers                    ; 520                                        ;
 ; Total pins                         ; 27                                         ;
@@ -193,6 +193,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; rtl_cpu/AluInput.v               ; yes             ; User Verilog HDL File        ; C:/Users/ishiba/Desktop/avr_cpu/quartus/rtl_cpu/AluInput.v           ;         ;
 ; rtl_cpu/ALU.v                    ; yes             ; User Verilog HDL File        ; C:/Users/ishiba/Desktop/avr_cpu/quartus/rtl_cpu/ALU.v                ;         ;
 ; rtl_cpu/Multiply.v               ; yes             ; User Verilog HDL File        ; C:/Users/ishiba/Desktop/avr_cpu/quartus/rtl_cpu/Multiply.v           ;         ;
+; rtl_cpu/PtrCalc.v                ; yes             ; User Verilog HDL File        ; C:/Users/ishiba/Desktop/avr_cpu/quartus/rtl_cpu/PtrCalc.v            ;         ;
 ; rtl_cpu/BitSetClr.v              ; yes             ; User Verilog HDL File        ; C:/Users/ishiba/Desktop/avr_cpu/quartus/rtl_cpu/BitSetClr.v          ;         ;
 ; rtl_cpu/PmCont.v                 ; yes             ; User Verilog HDL File        ; C:/Users/ishiba/Desktop/avr_cpu/quartus/rtl_cpu/PmCont.v             ;         ;
 ; rtl_cpu/DmCont.v                 ; yes             ; User Verilog HDL File        ; C:/Users/ishiba/Desktop/avr_cpu/quartus/rtl_cpu/DmCont.v             ;         ;
@@ -232,16 +233,16 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+-------------+
 ; Resource                                    ; Usage       ;
 +---------------------------------------------+-------------+
-; Estimated Total logic elements              ; 1,812       ;
+; Estimated Total logic elements              ; 1,845       ;
 ;                                             ;             ;
-; Total combinational functions               ; 1457        ;
+; Total combinational functions               ; 1490        ;
 ; Logic element usage by number of LUT inputs ;             ;
-;     -- 4 input functions                    ; 1074        ;
-;     -- 3 input functions                    ; 284         ;
-;     -- <=2 input functions                  ; 99          ;
+;     -- 4 input functions                    ; 1114        ;
+;     -- 3 input functions                    ; 274         ;
+;     -- <=2 input functions                  ; 102         ;
 ;                                             ;             ;
 ; Logic elements by mode                      ;             ;
-;     -- normal mode                          ; 1402        ;
+;     -- normal mode                          ; 1435        ;
 ;     -- arithmetic mode                      ; 55          ;
 ;                                             ;             ;
 ; Total registers                             ; 520         ;
@@ -253,8 +254,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; Embedded Multiplier 9-bit elements          ; 1           ;
 ; Maximum fan-out node                        ; clock~input ;
 ; Maximum fan-out                             ; 560         ;
-; Total fan-out                               ; 7800        ;
-; Average fan-out                             ; 3.76        ;
+; Total fan-out                               ; 7936        ;
+; Average fan-out                             ; 3.77        ;
 +---------------------------------------------+-------------+
 
 
@@ -263,25 +264,26 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                ; Library Name ;
 +-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------+--------------+
-; |MCU                                      ; 1457 (0)          ; 520 (17)     ; 278528      ; 1            ; 1       ; 0         ; 27   ; 0            ; |MCU                                                                               ; work         ;
-;    |CPU:CPU|                              ; 1376 (0)          ; 430 (0)      ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU                                                                       ; work         ;
-;       |ALU:ALU|                           ; 101 (101)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|ALU:ALU                                                               ; work         ;
-;       |AluInput:AIN|                      ; 108 (108)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|AluInput:AIN                                                          ; work         ;
-;       |BitSetClr:BSC|                     ; 53 (53)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|BitSetClr:BSC                                                         ; work         ;
-;       |DmCont:DMC|                        ; 172 (155)         ; 43 (43)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|DmCont:DMC                                                            ; work         ;
-;          |DmAdConv:AC|                    ; 10 (10)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|DmCont:DMC|DmAdConv:AC                                                ; work         ;
-;          |DmEnMask:EM|                    ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|DmCont:DMC|DmEnMask:EM                                                ; work         ;
+; |MCU                                      ; 1490 (0)          ; 520 (17)     ; 278528      ; 1            ; 1       ; 0         ; 27   ; 0            ; |MCU                                                                               ; work         ;
+;    |CPU:CPU|                              ; 1409 (0)          ; 430 (0)      ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU                                                                       ; work         ;
+;       |ALU:ALU|                           ; 92 (92)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|ALU:ALU                                                               ; work         ;
+;       |AluInput:AIN|                      ; 90 (90)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|AluInput:AIN                                                          ; work         ;
+;       |BitSetClr:BSC|                     ; 56 (56)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|BitSetClr:BSC                                                         ; work         ;
+;       |DmCont:DMC|                        ; 139 (122)         ; 43 (43)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|DmCont:DMC                                                            ; work         ;
+;          |DmAdConv:AC|                    ; 9 (9)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|DmCont:DMC|DmAdConv:AC                                                ; work         ;
+;          |DmEnMask:EM|                    ; 8 (8)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|DmCont:DMC|DmEnMask:EM                                                ; work         ;
 ;       |Multiply:MUL|                      ; 20 (20)           ; 18 (18)      ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|Multiply:MUL                                                          ; work         ;
 ;          |lpm_mult:Mult0|                 ; 0 (0)             ; 0 (0)        ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|Multiply:MUL|lpm_mult:Mult0                                           ; work         ;
 ;             |mult_b3t:auto_generated|     ; 0 (0)             ; 0 (0)        ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|Multiply:MUL|lpm_mult:Mult0|mult_b3t:auto_generated                   ; work         ;
-;       |OpDecode:DEC|                      ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|OpDecode:DEC                                                          ; work         ;
-;       |PcAndIr:PAI|                       ; 124 (124)         ; 56 (56)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|PcAndIr:PAI                                                           ; work         ;
-;       |PmCont:PMC|                        ; 55 (55)           ; 33 (33)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|PmCont:PMC                                                            ; work         ;
+;       |OpDecode:DEC|                      ; 12 (12)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|OpDecode:DEC                                                          ; work         ;
+;       |PcAndIr:PAI|                       ; 133 (133)         ; 56 (56)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|PcAndIr:PAI                                                           ; work         ;
+;       |PmCont:PMC|                        ; 56 (56)           ; 33 (33)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|PmCont:PMC                                                            ; work         ;
+;       |PtrCalc:PTR|                       ; 68 (68)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|PtrCalc:PTR                                                           ; work         ;
 ;       |RegFile:RF|                        ; 410 (410)         ; 256 (256)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|RegFile:RF                                                            ; work         ;
-;       |RfRead:RFR|                        ; 43 (43)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|RfRead:RFR                                                            ; work         ;
-;       |RfWrite:RFW|                       ; 86 (86)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|RfWrite:RFW                                                           ; work         ;
-;       |SregAndSp:SAS|                     ; 103 (103)         ; 24 (24)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|SregAndSp:SAS                                                         ; work         ;
-;       |TimDecode:TIM|                     ; 99 (99)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|TimDecode:TIM                                                         ; work         ;
+;       |RfRead:RFR|                        ; 52 (52)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|RfRead:RFR                                                            ; work         ;
+;       |RfWrite:RFW|                       ; 73 (73)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|RfWrite:RFW                                                           ; work         ;
+;       |SregAndSp:SAS|                     ; 111 (111)         ; 24 (24)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|SregAndSp:SAS                                                         ; work         ;
+;       |TimDecode:TIM|                     ; 97 (97)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|CPU:CPU|TimDecode:TIM                                                         ; work         ;
 ;    |IoReg:IOR|                            ; 63 (63)           ; 72 (72)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|IoReg:IOR                                                                     ; work         ;
 ;    |RAM:DM|                               ; 0 (0)             ; 0 (0)        ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|RAM:DM                                                                        ; work         ;
 ;       |altsyncram:mem_rtl_0|              ; 0 (0)             ; 0 (0)        ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |MCU|RAM:DM|altsyncram:mem_rtl_0                                                   ; work         ;
@@ -343,15 +345,15 @@ Note: number of Embedded Multiplier Blocks used is only available after a succes
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; CPU:CPU|SregAndSp:SAS|sp[0]            ; 4       ;
-; CPU:CPU|SregAndSp:SAS|sp[10]           ; 4       ;
-; CPU:CPU|SregAndSp:SAS|sp[7]            ; 4       ;
-; CPU:CPU|SregAndSp:SAS|sp[6]            ; 4       ;
-; CPU:CPU|SregAndSp:SAS|sp[5]            ; 4       ;
-; CPU:CPU|SregAndSp:SAS|sp[4]            ; 4       ;
-; CPU:CPU|SregAndSp:SAS|sp[3]            ; 4       ;
-; CPU:CPU|SregAndSp:SAS|sp[2]            ; 4       ;
-; CPU:CPU|SregAndSp:SAS|sp[1]            ; 4       ;
+; CPU:CPU|SregAndSp:SAS|sp[0]            ; 3       ;
+; CPU:CPU|SregAndSp:SAS|sp[1]            ; 3       ;
+; CPU:CPU|SregAndSp:SAS|sp[5]            ; 3       ;
+; CPU:CPU|SregAndSp:SAS|sp[4]            ; 3       ;
+; CPU:CPU|SregAndSp:SAS|sp[3]            ; 3       ;
+; CPU:CPU|SregAndSp:SAS|sp[2]            ; 3       ;
+; CPU:CPU|SregAndSp:SAS|sp[7]            ; 3       ;
+; CPU:CPU|SregAndSp:SAS|sp[6]            ; 3       ;
+; CPU:CPU|SregAndSp:SAS|sp[10]           ; 3       ;
 ; Total number of inverted registers = 9 ;         ;
 +----------------------------------------+---------+
 
@@ -372,18 +374,19 @@ Note: number of Embedded Multiplier Blocks used is only available after a succes
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output           ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------+
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |MCU|CPU:CPU|PcAndIr:PAI|pc[14]      ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |MCU|CPU:CPU|PcAndIr:PAI|ir[14]      ;
-; 3:1                ; 14 bits   ; 28 LEs        ; 28 LEs               ; 0 LEs                  ; No         ; |MCU|CPU:CPU|PcAndIr:PAI|pc_new[1]   ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |MCU|CPU:CPU|PcAndIr:PAI|ir[13]      ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 28 LEs               ; 0 LEs                  ; No         ; |MCU|CPU:CPU|PcAndIr:PAI|pc_new[10]  ;
 ; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |MCU|CPU:CPU|RegFile:RF|regf         ;
-; 8:1                ; 3 bits    ; 15 LEs        ; 15 LEs               ; 0 LEs                  ; No         ; |MCU|CPU:CPU|PcAndIr:PAI|Mux0        ;
+; 8:1                ; 3 bits    ; 15 LEs        ; 15 LEs               ; 0 LEs                  ; No         ; |MCU|CPU:CPU|PcAndIr:PAI|Mux2        ;
 ; 16:1               ; 8 bits    ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; No         ; |MCU|CPU:CPU|RegFile:RF|Mux9         ;
-; 32:1               ; 8 bits    ; 168 LEs       ; 168 LEs              ; 0 LEs                  ; No         ; |MCU|CPU:CPU|RegFile:RF|Mux16        ;
-; 17:1               ; 8 bits    ; 88 LEs        ; 88 LEs               ; 0 LEs                  ; No         ; |MCU|CPU:CPU|RegFile:RF|rdata_a[3]   ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |MCU|CPU:CPU|AluInput:AIN|Selector4  ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |MCU|CPU:CPU|AluInput:AIN|Selector30 ;
+; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |MCU|CPU:CPU|PtrCalc:PTR|Selector26  ;
+; 32:1               ; 8 bits    ; 168 LEs       ; 168 LEs              ; 0 LEs                  ; No         ; |MCU|CPU:CPU|RegFile:RF|Mux23        ;
+; 17:1               ; 8 bits    ; 88 LEs        ; 88 LEs               ; 0 LEs                  ; No         ; |MCU|CPU:CPU|RegFile:RF|rdata_a[0]   ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |MCU|CPU:CPU|AluInput:AIN|Selector11 ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |MCU|CPU:CPU|AluInput:AIN|Selector31 ;
 ; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |MCU|CPU:CPU|AluInput:AIN|Selector25 ;
-; 7:1                ; 2 bits    ; 8 LEs         ; 42 LEs               ; -34 LEs                ; No         ; |MCU|CPU:CPU|AluInput:AIN|Selector27 ;
-; 6:1                ; 7 bits    ; 28 LEs        ; 21 LEs               ; 7 LEs                  ; No         ; |MCU|CPU:CPU|ALU:ALU|sw_bi[15]       ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 22 LEs               ; -14 LEs                ; No         ; |MCU|CPU:CPU|AluInput:AIN|Selector26 ;
+; 6:1                ; 7 bits    ; 28 LEs        ; 21 LEs               ; 7 LEs                  ; No         ; |MCU|CPU:CPU|ALU:ALU|sw_bi[14]       ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------+
 
 
@@ -711,22 +714,22 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     ENA CLR           ; 188                         ;
 ;     ENA CLR SLD       ; 16                          ;
 ;     plain             ; 31                          ;
-; cycloneiii_lcell_comb ; 1457                        ;
+; cycloneiii_lcell_comb ; 1490                        ;
 ;     arith             ; 55                          ;
-;         2 data inputs ; 24                          ;
-;         3 data inputs ; 31                          ;
-;     normal            ; 1402                        ;
+;         2 data inputs ; 15                          ;
+;         3 data inputs ; 40                          ;
+;     normal            ; 1435                        ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 2                           ;
-;         2 data inputs ; 71                          ;
-;         3 data inputs ; 253                         ;
-;         4 data inputs ; 1074                        ;
+;         1 data inputs ; 1                           ;
+;         2 data inputs ; 84                          ;
+;         3 data inputs ; 234                         ;
+;         4 data inputs ; 1114                        ;
 ; cycloneiii_mac_mult   ; 1                           ;
 ; cycloneiii_mac_out    ; 1                           ;
 ; cycloneiii_ram_block  ; 40                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 23.00                       ;
-; Average LUT depth     ; 15.07                       ;
+; Max LUT depth         ; 22.80                       ;
+; Average LUT depth     ; 14.60                       ;
 +-----------------------+-----------------------------+
 
 
@@ -735,7 +738,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:10     ;
+; Top            ; 00:00:09     ;
 +----------------+--------------+
 
 
@@ -745,7 +748,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 14.0.0 Build 200 06/17/2014 SJ Web Edition
-    Info: Processing started: Sat Oct 20 23:23:06 2018
+    Info: Processing started: Sat Oct 27 17:28:42 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off MCU -c MCU
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file rtl_mcu/mcu.v
@@ -768,6 +771,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file rtl_cpu
     Info (12023): Found entity 1: ALU
 Info (12021): Found 1 design units, including 1 entities, in source file rtl_cpu/multiply.v
     Info (12023): Found entity 1: Multiply
+Info (12021): Found 1 design units, including 1 entities, in source file rtl_cpu/ptrcalc.v
+    Info (12023): Found entity 1: PtrCalc
 Info (12021): Found 1 design units, including 1 entities, in source file rtl_cpu/bitsetclr.v
     Info (12023): Found entity 1: BitSetClr
 Info (12021): Found 1 design units, including 1 entities, in source file rtl_cpu/pmcont.v
@@ -794,7 +799,8 @@ Info (12128): Elaborating entity "TimDecode" for hierarchy "CPU:CPU|TimDecode:TI
 Info (12128): Elaborating entity "AluInput" for hierarchy "CPU:CPU|AluInput:AIN"
 Info (12128): Elaborating entity "ALU" for hierarchy "CPU:CPU|ALU:ALU"
 Info (12128): Elaborating entity "Multiply" for hierarchy "CPU:CPU|Multiply:MUL"
-Warning (10230): Verilog HDL assignment warning at Multiply.v(69): truncated value with size 17 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at Multiply.v(73): truncated value with size 17 to match size of target (16)
+Info (12128): Elaborating entity "PtrCalc" for hierarchy "CPU:CPU|PtrCalc:PTR"
 Info (12128): Elaborating entity "BitSetClr" for hierarchy "CPU:CPU|BitSetClr:BSC"
 Info (12128): Elaborating entity "PmCont" for hierarchy "CPU:CPU|PmCont:PMC"
 Info (12128): Elaborating entity "DmCont" for hierarchy "CPU:CPU|DmCont:DMC"
@@ -884,16 +890,16 @@ Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal 
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 1977 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 2021 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 19 input pins
     Info (21059): Implemented 8 output pins
-    Info (21061): Implemented 1909 logic cells
+    Info (21061): Implemented 1953 logic cells
     Info (21064): Implemented 40 RAM segments
     Info (21062): Implemented 1 DSP elements
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 2 warnings
-    Info: Peak virtual memory: 554 megabytes
-    Info: Processing ended: Sat Oct 20 23:23:20 2018
-    Info: Elapsed time: 00:00:14
-    Info: Total CPU time (on all processors): 00:00:13
+    Info: Peak virtual memory: 545 megabytes
+    Info: Processing ended: Sat Oct 27 17:28:53 2018
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:12
 
 

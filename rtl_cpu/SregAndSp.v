@@ -13,6 +13,7 @@ module  SregAndSp (
     input               alu_hf,     //  ALU half carry flag
     input               mul_cf,     //  Multiplication carry flag
     input               mul_zf,     //  Multiplication zero flag
+    input       [15:0]  ptr_ro,     //  Pointer calculation result
     input       [7:0]   bsc_ro,     //  Bit set/clear result
     input               bst_tf,     //  BST instruction transfer bit
     input               mm_sp_l_we, //  Stack pointer low byte write enable
@@ -21,13 +22,12 @@ module  SregAndSp (
     input       [7:0]   mm_io_wdata,//  Memory mapped I/O write data
     input               irq_det,    //  Interrupt detected (accepted)
     input               irq_ret,    //  Interrupt returned
-    input       [0:82]  op_decode,  //  Decoded opcodes
     input               tim_sr_en,  //  Timing of status register update
     input               tim_sp_en,  //  Timing of stack pointer update
     output  reg [15:0]  sp,         //  Stack pointer
-    output      [15:0]  sp_pre,     //  Stack pointer pre-incremented value
     output      [7:0]   sreg,       //  Status register
     output  reg         sr_cf,      //  Status register carry flag
+    output  reg         sr_zf,      //  Status register zero flag
     output  reg         sr_tf,      //  Status register transfer bit
     output  reg         sr_if       //  Status register interrupt flag
 );
@@ -38,16 +38,12 @@ parameter   SP_RESET = 16'h4ff;     //  Stack Pointer Reset Value
 //  Internal Nets
 //----------------------------------------------------------------------
 wire[15:0]  sp_new;
-wire[15:0]  sp_new_ms;
+wire[15:0]  sp_new_mm;
 wire        sp_new_en;
-wire        sp_inc_op;
-reg         sr_zf;
 reg         sr_nf;
 reg         sr_vf;
 reg         sr_sf;
 reg         sr_hf;
-wire        zf_and;
-wire        zf_and_op;
 wire        cf_new;
 wire        zf_new;
 wire        nf_new;
@@ -66,15 +62,6 @@ wire        tf_new_en;
 wire        if_new_en;
 reg [7:0]   en_mask;
 
-//  Decoded Opcode Renaming
-`include "OpNumber.v"
-wire    op_ret    = op_decode[B_RET   ];//  1001010100001000    RET
-wire    op_reti   = op_decode[B_RETI  ];//  1001010100011000    RETI
-wire    op_pop    = op_decode[B_POP   ];//  1001000ddddd1111    POP  Rd
-wire    op_sbc    = op_decode[B_SBC   ];//  000010rdddddrrrr    SBC  Rd,Rr
-wire    op_sbci   = op_decode[B_SBCI  ];//  0100KKKKddddKKKK    SBCI Rd,K
-wire    op_cpc    = op_decode[B_CPC   ];//  000001rdddddrrrr    CPC  Rd,Rr
-
 //----------------------------------------------------------------------
 //  Stack Pointer
 //----------------------------------------------------------------------
@@ -86,15 +73,9 @@ always @(posedge clock or posedge reset) begin
     end
 end
 
-assign  sp_new = (mm_sp_l_we | mm_sp_h_we) ? sp_new_ms : sp_pre;
+assign  sp_new = (mm_sp_l_we | mm_sp_h_we) ? sp_new_mm : ptr_ro;
 
-assign  sp_pre = sp_inc_op ? (sp + 1'b1) : (sp - 1'b1);
-
-assign  sp_inc_op = op_ret
-                  | op_reti
-                  | op_pop;
-
-assign  sp_new_ms = (mm_sp_l_we ? {sp[15:8], mm_io_wdata} : 16'h0000)
+assign  sp_new_mm = (mm_sp_l_we ? {sp[15:8], mm_io_wdata} : 16'h0000)
                   | (mm_sp_h_we ? {mm_io_wdata, sp[7:0]}  : 16'h0000);
 
 assign  sp_new_en = mm_sp_l_we | mm_sp_h_we | tim_sp_en;
@@ -132,13 +113,8 @@ assign  sreg[5] = sr_hf;
 assign  sreg[6] = sr_tf;
 assign  sreg[7] = sr_if;
 
-assign  zf_and = zf_and_op ? (sr_zf & alu_zf) : alu_zf;
-assign  zf_and_op = op_sbc
-                  | op_sbci
-                  | op_cpc;
-
 assign  cf_new = mm_sreg_we ? mm_io_wdata[0] : (bsc_ro[0] | alu_cf | mul_cf);
-assign  zf_new = mm_sreg_we ? mm_io_wdata[1] : (bsc_ro[1] | zf_and | mul_zf);
+assign  zf_new = mm_sreg_we ? mm_io_wdata[1] : (bsc_ro[1] | alu_zf | mul_zf);
 assign  nf_new = mm_sreg_we ? mm_io_wdata[2] : (bsc_ro[2] | alu_nf);
 assign  vf_new = mm_sreg_we ? mm_io_wdata[3] : (bsc_ro[3] | alu_vf);
 assign  sf_new = mm_sreg_we ? mm_io_wdata[4] : (bsc_ro[4] | alu_sf);

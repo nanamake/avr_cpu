@@ -11,6 +11,7 @@ set_global_assignment -name VERILOG_FILE rtl_cpu/TimDecode.v
 set_global_assignment -name VERILOG_FILE rtl_cpu/AluInput.v
 set_global_assignment -name VERILOG_FILE rtl_cpu/ALU.v
 set_global_assignment -name VERILOG_FILE rtl_cpu/Multiply.v
+set_global_assignment -name VERILOG_FILE rtl_cpu/PtrCalc.v
 set_global_assignment -name VERILOG_FILE rtl_cpu/BitSetClr.v
 set_global_assignment -name VERILOG_FILE rtl_cpu/PmCont.v
 set_global_assignment -name VERILOG_FILE rtl_cpu/DmCont.v

@@ -5,12 +5,7 @@ module  Multiply (
     input           clock,      //  Master clock
     input   [7:0]   ai,         //  Operand A
     input   [7:0]   bi,         //  Operand B
-    input           op_mul,     //  Operation MUL enable
-    input           op_muls,    //  Operation MULS enable
-    input           op_mulsu,   //  Operation MULSU enable
-    input           op_fmul,    //  Operation FMUL enable
-    input           op_fmuls,   //  Operation FMULS enable
-    input           op_fmulsu,  //  Operation FMULSU enable
+    input   [0:82]  op_decode,  //  Decoded opcodes
     output  [15:0]  ro,         //  Result output
     output          cf,         //  Carry flag
     output          zf          //  Zero flag
@@ -18,6 +13,15 @@ module  Multiply (
 
 parameter   IREG = 1;   //  Use multiplier input register
 parameter   OREG = 0;   //  Use multiplier output register
+
+//  Decoded Opcode Renaming
+`include "OpNumber.v"
+wire    op_mul    = op_decode[B_MUL   ];//  100111rdddddrrrr    MUL  Rd,Rr
+wire    op_muls   = op_decode[B_MULS  ];//  00000010ddddrrrr    MULS Rd,Rr
+wire    op_mulsu  = op_decode[B_MULSU ];//  000000110ddd0rrr    MULSU  Rd,Rr
+wire    op_fmul   = op_decode[B_FMUL  ];//  000000110ddd1rrr    FMUL   Rd,Rr
+wire    op_fmuls  = op_decode[B_FMULS ];//  000000111ddd0rrr    FMULS  Rd,Rr
+wire    op_fmulsu = op_decode[B_FMULSU];//  000000111ddd1rrr    FMULSU Rd,Rr
 
 //  Internal nets
 wire signed [8:0]   mu_ai_comb;

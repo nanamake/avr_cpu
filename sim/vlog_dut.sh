@@ -15,6 +15,7 @@ vlog \
     $cpu_dir/AluInput.v \
     $cpu_dir/ALU.v \
     $cpu_dir/Multiply.v \
+    $cpu_dir/PtrCalc.v \
     $cpu_dir/BitSetClr.v \
     $cpu_dir/PmCont.v \
     $cpu_dir/DmCont.v \

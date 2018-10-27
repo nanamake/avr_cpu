@@ -6,6 +6,7 @@ module  RfWrite (
     input       [1:0]   cycle,          //  Cycle count
     input       [15:0]  alu_ro,         //  ALU result
     input       [15:0]  mul_ro,         //  Multiplication result
+    input       [15:0]  ptr_ro,         //  Pointer calculation result
     input       [7:0]   bsc_ro,         //  Bit set/clear result
     input       [7:0]   mm_rdata,       //  Data memory space read data
     input               mm_rdata_en,    //  Data memory space read data enable
@@ -23,7 +24,7 @@ reg         word_op;
 
 assign  wdata = (mm_rdata_en | lpm_data_en)
                 ? ({8'h00, mm_rdata} | {8'h00, lpm_data})
-                : (alu_ro | mul_ro | {8'h00, bsc_ro});
+                : (alu_ro | mul_ro | ptr_ro | {8'h00, bsc_ro});
 
 assign  we_byte = tim_rf_we & ~word_op;
 assign  we_word = tim_rf_we &  word_op;

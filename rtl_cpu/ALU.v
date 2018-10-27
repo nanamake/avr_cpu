@@ -5,17 +5,15 @@ module  ALU (
     input   [15:0]  ai,         //  Operand A
     input   [15:0]  bi,         //  Operand B
     input           ci,         //  Carry input
-    input           op_adc_b,   //  Operation ADC(8-bit) enable
-    input           op_sbc_b,   //  Operation SBC(8-bit) enable
-    input           op_adc_w,   //  Operation ADC(16-bit) enable
-    input           op_sbc_w,   //  Operation SBC(16-bit) enable
-    input           op_and,     //  Operation AND enable
-    input           op_or,      //  Operation OR enable
-    input           op_eor,     //  Operation EOR enable
-    input           op_asr,     //  Operation ASR enable
-    input           op_lsr,     //  Operation LSR enable
-    input           op_ror,     //  Operation ROR enable
-    input           op_swap,    //  Operation SWAP enable
+    input           sel_adc_b,  //  Operation ADC(8-bit) enable
+    input           sel_sbc_b,  //  Operation SBC(8-bit) enable
+    input           sel_adc_w,  //  Operation ADC(16-bit) enable
+    input           sel_sbc_w,  //  Operation SBC(16-bit) enable
+    input           sel_and,    //  Operation AND enable
+    input           sel_or,     //  Operation OR enable
+    input           sel_eor,    //  Operation EOR enable
+    input           sr_zf,      //  Zero flag in status register
+    input   [0:82]  op_decode,  //  Decoded opcodes
     output  [15:0]  ro,         //  Result output
     output          cf,         //  Carry flag
     output          zf,         //  Zero flag
@@ -24,6 +22,16 @@ module  ALU (
     output          sf,         //  Sign flag
     output          hf          //  Half carry flag
 );
+
+//  Decoded Opcode Renaming
+`include "OpNumber.v"
+wire    op_sbc    = op_decode[B_SBC   ];//  000010rdddddrrrr    SBC  Rd,Rr
+wire    op_sbci   = op_decode[B_SBCI  ];//  0100KKKKddddKKKK    SBCI Rd,K
+wire    op_cpc    = op_decode[B_CPC   ];//  000001rdddddrrrr    CPC  Rd,Rr
+wire    op_asr    = op_decode[B_ASR   ];//  1001010ddddd0101    ASR  Rd
+wire    op_lsr    = op_decode[B_LSR   ];//  1001010ddddd0110    LSR  Rd
+wire    op_ror    = op_decode[B_ROR   ];//  1001010ddddd0111    ROR  Rd
+wire    op_swap   = op_decode[B_SWAP  ];//  1001010ddddd0010    SWAP Rd
 
 //  Internal nets
 wire[15:0]  sw_bi;
@@ -49,13 +57,14 @@ wire        asr_vf;
 wire        lsr_vf;
 wire        ror_vf;
 wire[7:0]   swap_ro;
-wire        op_adc_sbc;
+wire        sel_adc_sbc;
 wire        byte_op;
 wire        word_op;
+wire        zf_and_op;
 
 //  ADC/SBC switch
-assign  sw_bi = (op_sbc_b | op_sbc_w) ? ~bi : bi;
-assign  sw_ci = (op_sbc_b | op_sbc_w) ? ~ci : ci;
+assign  sw_bi = (sel_sbc_b | sel_sbc_w) ? ~bi : bi;
+assign  sw_ci = (sel_sbc_b | sel_sbc_w) ? ~ci : ci;
 
 //  16-bit addition
 assign  {co, so} = ai + sw_bi + sw_ci;
@@ -86,55 +95,60 @@ assign  ror_vf = ror_ro[7] ^ ror_cf;
 assign  swap_ro = {ai_l[3:0], ai_l[7:4]};
 
 //  Result output (and-or multiplexer)
-assign  op_adc_sbc = op_adc_b | op_sbc_b
-                   | op_adc_w | op_sbc_w;
+assign  sel_adc_sbc = sel_adc_b | sel_sbc_b
+                    | sel_adc_w | sel_sbc_w;
 
-assign  ro = (op_adc_sbc ? so : 16'h0000)
-           | (op_and  ? {8'h00, and_ro } : 16'h0000)
-           | (op_or   ? {8'h00, or_ro  } : 16'h0000)
-           | (op_eor  ? {8'h00, eor_ro } : 16'h0000)
+assign  ro = (sel_adc_sbc ? so : 16'h0000)
+           | (sel_and ? {8'h00, and_ro } : 16'h0000)
+           | (sel_or  ? {8'h00, or_ro  } : 16'h0000)
+           | (sel_eor ? {8'h00, eor_ro } : 16'h0000)
            | (op_asr  ? {8'h00, asr_ro } : 16'h0000)
            | (op_lsr  ? {8'h00, lsr_ro } : 16'h0000)
            | (op_ror  ? {8'h00, ror_ro } : 16'h0000)
            | (op_swap ? {8'h00, swap_ro} : 16'h0000);
 
 //  Flag outputs
-assign  byte_op = op_adc_b
-                | op_sbc_b
-                | op_and
-                | op_or
-                | op_eor
+assign  byte_op = sel_adc_b
+                | sel_sbc_b
+                | sel_and
+                | sel_or
+                | sel_eor
                 | op_asr
                 | op_lsr
                 | op_ror
                 | op_swap;
 
-assign  word_op = op_adc_w
-                | op_sbc_w;
+assign  word_op = sel_adc_w
+                | sel_sbc_w;
 
-assign  cf = (op_adc_b & adc_b_cf)
-           | (op_sbc_b & ~adc_b_cf)
-           | (op_adc_w & co)
-           | (op_sbc_w & ~co)
+assign  zf_and_op = op_sbc
+                  | op_sbci
+                  | op_cpc;
+
+assign  cf = (sel_adc_b & adc_b_cf)
+           | (sel_sbc_b & ~adc_b_cf)
+           | (sel_adc_w & co)
+           | (sel_sbc_w & ~co)
            | (op_asr & asr_cf)
            | (op_lsr & lsr_cf)
            | (op_ror & ror_cf);
 
-assign  zf = (byte_op & (ro[7:0] == 8'h00))
+assign  zf = ((byte_op &  zf_and_op) & (sr_zf & (ro[7:0] == 8'h00)))
+           | ((byte_op & ~zf_and_op) & (ro[7:0] == 8'h00))
            | (word_op & (ro == 16'h0000));
 
 assign  nf = (byte_op & ro[7])
            | (word_op & ro[15]);
 
-assign  vf = ((op_adc_b | op_sbc_b) & adc_b_vf)
-           | ((op_adc_w | op_sbc_w) & adc_w_vf)
+assign  vf = ((sel_adc_b | sel_sbc_b) & adc_b_vf)
+           | ((sel_adc_w | sel_sbc_w) & adc_w_vf)
            | (op_asr & asr_vf)
            | (op_lsr & lsr_vf)
            | (op_ror & ror_vf);
 
 assign  sf = nf ^ vf;
 
-assign  hf = (op_adc_b & adc_b_hf)
-           | (op_sbc_b & ~adc_b_hf);
+assign  hf = (sel_adc_b & adc_b_hf)
+           | (sel_sbc_b & ~adc_b_hf);
 
 endmodule

@@ -9,12 +9,11 @@ module  DmCont (
     input       [7:0]   rf_rdata,       //  Register file read data
     input       [7:0]   sreg,           //  Status register
     input       [15:0]  sp,             //  Stack pointer
-    input       [15:0]  sp_pre,         //  Stack pointer pre-incremented value
     input       [15:0]  pc,             //  Program counter
     input       [15:0]  ir,             //  Instruction register
     input       [1:0]   cycle,          //  Cycle counter
-    input       [15:0]  alu_ai,         //  ALU operand A
-    input       [15:0]  alu_ro,         //  ALU result
+    input       [15:0]  ptr_ai,         //  Pointer pre-calculation value
+    input       [15:0]  ptr_ro,         //  Pointer calculation result
     input       [7:0]   bsc_ro,         //  Bit set/clear result
     input       [0:82]  op_decode,      //  Decoded opcodes
     input               tim_dm_re,      //  Timing of data memory space read
@@ -42,8 +41,6 @@ module  DmCont (
 wire[15:0]  mm_addr;
 wire        mm_pre_op;
 wire        mm_post_op;
-wire        sp_dec_op;
-wire        sp_inc_op;
 wire        mm_op;
 wire[15:0]  ac_dm_addr;
 wire        ac_dm_en;
@@ -124,10 +121,8 @@ DmAdConv AC (
     .io_en      (ac_io_en   )   //  (o) I/O register enable
 );
 
-assign  mm_addr = (mm_pre_op  ? alu_ro : 16'h0000)
-                | (mm_post_op ? alu_ai : 16'h0000)
-                | (sp_dec_op  ? sp     : 16'h0000)
-                | (sp_inc_op  ? sp_pre : 16'h0000);
+assign  mm_addr = (mm_pre_op  ? ptr_ro : 16'h0000)
+                | (mm_post_op ? ptr_ai : 16'h0000);
 
 assign  mm_pre_op   = op_lds    //  LDS  Rd,k
                     | op_ldx    //  LD   Rd,X
@@ -142,25 +137,24 @@ assign  mm_pre_op   = op_lds    //  LDS  Rd,k
                     | op_styd   //  ST   -Y,Rr
                     | op_stzd   //  ST   -Z,Rr
                     | op_stdy   //  STD  Y+q,Rr
-                    | op_stdz;  //  STD  Z+q,Rr
+                    | op_stdz   //  STD  Z+q,Rr
+                    | op_ret    //  RET
+                    | op_reti   //  RETI
+                    | op_pop;   //  POP  Rd
 
 assign  mm_post_op  = op_ldxi   //  LD   Rd,X+
                     | op_ldyi   //  LD   Rd,Y+
                     | op_ldzi   //  LD   Rd,Z+
                     | op_stxi   //  ST   X+,Rr
                     | op_styi   //  ST   Y+,Rr
-                    | op_stzi;  //  ST   Z+,Rr
-
-assign  sp_dec_op   = op_call   //  CALL k
+                    | op_stzi   //  ST   Z+,Rr
+                    | op_call   //  CALL k
                     | op_rcall  //  RCALL k
                     | op_icall  //  ICALL
                     | op_push;  //  PUSH Rr
 
-assign  sp_inc_op   = op_ret    //  RET
-                    | op_reti   //  RETI
-                    | op_pop;   //  POP  Rd
 
-assign  mm_op = mm_pre_op | mm_post_op | sp_dec_op | sp_inc_op;
+assign  mm_op = mm_pre_op | mm_post_op;
 
 //----------------------------------------------------------------------
 //  Multiplex Memory Mapped I/O and I/O Direct
