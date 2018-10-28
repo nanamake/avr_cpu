@@ -32,13 +32,22 @@ Interface
 	    input   [15:0]  irq_addr    //  Interrupt vector address
 	);
 
+Indicate the expected connection. 
+Interrupt controller, I/O registers, and peripherals are created by the user.
+
 ![CPU connection diagram](cpu_connect.png)
+
+
+Block Diagram
+-------------
+
+![CPU architecture diagram](cpu_arch.png)
 
 
 Notices
 -------
 
-Memory map is as follows. Internal register file is not mapped.
+Data memory map is as follows. Internal register file is not mapped.
 
 	0x0000-0x001F  Reserved
 	0x0020-0x00FF  I/O register
